@@ -1,0 +1,28 @@
+#cabeza{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    padding-bottom: 5px;
+    border-bottom: 2px rgb(8, 140, 216) solid;
+}
+.icono{
+    display: inline;
+    position: relative;
+    width: 70px;
+    height: 70px;
+}
+.hiper{
+
+    text-decoration: none;
+    display:inline;
+    color:black;
+}
+.hiper:hover{
+    text-decoration: underline;
+    color:red;
+}
+#cabeza > h1{
+    font-size: 3em;
+}

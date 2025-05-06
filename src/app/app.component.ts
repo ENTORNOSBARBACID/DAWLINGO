@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { EstaticosModule } from './estaticos/estaticos.module';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, EstaticosModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
