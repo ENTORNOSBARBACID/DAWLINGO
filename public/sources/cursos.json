@@ -1,0 +1,75 @@
+[
+    {
+      "id": 1,
+      "nombre": "Python",
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png",
+      "profesor": "Alberto Barbacid",
+      "niveles": 10,
+      "descripcion": "Aprende Python desde los fundamentos hasta estructuras de datos complejas.",
+      "dificultad": "Fácil"
+    },
+    {
+      "id": 2,
+      "nombre": "JavaScript",
+      "imagen": "https://static.vecteezy.com/system/resources/previews/027/127/463/non_2x/javascript-logo-javascript-icon-transparent-free-png.png",
+      "profesor": "Sergio Luis",
+      "niveles": 10,
+      "descripcion": "Domina JavaScript y crea sitios web dinámicos con interactividad.",
+      "dificultad": "Media"
+    },
+    {
+      "id": 3,
+      "nombre": "C++",
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png",
+      "profesor": "Sergio Luis",
+      "niveles": 10,
+      "descripcion": "Comprende la programación orientada a objetos y conceptos básicos en C++.",
+      "dificultad": "Media"
+    },
+    {
+      "id": 4,
+      "nombre": "Java",
+      "imagen": "https://images.vexels.com/media/users/3/166401/isolated/preview/b82aa7ac3f736dd78570dd3fa3fa9e24-icono-del-lenguaje-de-programacion-java.png",
+      "profesor": "Alberto Barbacid",
+      "niveles": 10,
+      "descripcion": "Curso práctico para desarrollar aplicaciones con Java.",
+      "dificultad": "Media"
+    },
+    {
+      "id": 5,
+      "nombre": "C#",
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png",
+      "profesor": "Alberto Barbacid",
+      "niveles": 10,
+      "descripcion": "Aprende a programar con C# y el entorno .NET desde cero.",
+      "dificultad": "Fácil"
+    },
+    {
+      "id": 6,
+      "nombre": "PHP y MySQL",
+      "imagen": "https://wiki.cifprodolfoucha.es/images/7/76/PHP-Mysql.png",
+      "profesor": "Sergio Luis",
+      "niveles": 10,
+      "descripcion": "Desarrolla aplicaciones web dinámicas con PHP y bases de datos MySQL.",
+      "dificultad": "Media"
+    },
+    {
+      "id": 7,
+      "nombre": "Ionic",
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Ionic_Logo.svg/1280px-Ionic_Logo.svg.png",
+      "profesor": "Alberto Barbacid",
+      "niveles": 10,
+      "descripcion": "Crea aplicaciones para Android usando Ionic.",
+      "dificultad": "Alta"
+    },
+    {
+      "id": 8,
+      "nombre": "ASP",
+      "imagen": "https://cdn-icons-png.flaticon.com/512/29/29143.png",
+      "profesor": "Sergio Luis",
+      "niveles": 10,
+      "descripcion": "Aprende ASP y crea servicios web de alto rendimiento.",
+      "dificultad": "Alta"
+    }
+  ]
+  

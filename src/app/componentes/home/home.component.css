@@ -1,0 +1,18 @@
+.main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.content{
+    height: 100%;
+    width: 80%;
+}
+
+.barra-lateral{
+    width: 20%;
+    height: 100%;
+    background-color: #028bad;
+    border-radius: 0px 0px 10px 10px;
+    margin-bottom: 10px;
+}

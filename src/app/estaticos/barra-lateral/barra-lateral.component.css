@@ -1,0 +1,10 @@
+.cuerpo{
+    display: flex;
+    flex-direction: column;
+}
+.hiper{
+    padding: 20px;
+    text-decoration: none;
+    font-size: 1.5em;
+    color:white
+}
