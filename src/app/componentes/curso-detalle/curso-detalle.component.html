@@ -1,0 +1,33 @@
+<div *ngFor="let c of cursos">
+    <div *ngIf="c.id == id" class="info">
+      <div id="foto">
+        <img src="{{ c.imagen }}" class="imagenes" />
+      </div>
+      <div id="contenido">
+        <h1><u>{{ c.nombre }}</u></h1>
+        <p><u>Descripcion :</u> {{ c.larga }}</p>
+        <p><u>Profesor que imparte el curso:</u> {{ c.profesor }}</p>
+        <p><u>Dificultad:</u> {{ c.dificultad}}</p>
+        <p><u>Niveles:</u> {{ c.niveles }}</p>
+        <button>Apuntarme al curso</button>
+      </div>
+    </div>
+  </div>
+  <div class="navegacion">
+    <div *ngIf="id>1; else vacio">
+        <a routerLink="/home/cursos/detalles/{{id-1}}"><h3> < Anterior Curso</h3></a>
+    </div>
+    <div>
+        <h3><u>{{id}}</u></h3>
+    </div>
+    <div *ngIf="id<8; else vacio">
+        <a routerLink="/home/cursos/detalles/{{id+1}}"><h3>Siguiente curso > </h3></a>
+    </div>
+    
+        <ng-template #vacio>
+            <div>
+                <h3> &nbsp;</h3>
+            </div>
+        </ng-template>
+    
+  </div>

@@ -4,14 +4,16 @@ import { HomeComponent } from './home/home.component';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { EstaticosModule } from '../estaticos/estaticos.module';
 import { CursosComponent } from './cursos/cursos.component';
+import { CursoDetalleComponent } from './curso-detalle/curso-detalle.component';
+import { InicioComponent } from './inicio/inicio.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, CursosComponent],
+  declarations: [HomeComponent, CursosComponent, CursoDetalleComponent, InicioComponent],
   imports: [
     CommonModule, RouterLink, RouterOutlet, EstaticosModule
   ],
-  exports:[HomeComponent, CursosComponent]
+  exports:[HomeComponent, CursosComponent, CursoDetalleComponent, InicioComponent]
 })
 export class ComponentModule { }

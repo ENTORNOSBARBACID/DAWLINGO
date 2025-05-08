@@ -6,7 +6,8 @@
       "profesor": "Alberto Barbacid",
       "niveles": 10,
       "descripcion": "Aprende Python desde los fundamentos hasta estructuras de datos complejas.",
-      "dificultad": "Fácil"
+      "dificultad": "Fácil",
+      "larga": "Python es un lenguaje de programación de alto nivel, muy utilizado por su sintaxis clara y legible. Es ideal tanto para principiantes como para expertos, y se emplea en diversos campos como desarrollo web, automatización, análisis de datos, inteligencia artificial, machine learning y ciencia de datos. Gracias a su enorme ecosistema de librerías como Django, Flask, Pandas o TensorFlow, Python se ha consolidado como uno de los lenguajes más versátiles y demandados en la industria tecnológica."
     },
     {
       "id": 2,
@@ -15,7 +16,8 @@
       "profesor": "Sergio Luis",
       "niveles": 10,
       "descripcion": "Domina JavaScript y crea sitios web dinámicos con interactividad.",
-      "dificultad": "Media"
+      "dificultad": "Media",
+      "larga": "JavaScript es el lenguaje de programación esencial del desarrollo web. Permite crear sitios dinámicos e interactivos en el navegador y es una tecnología clave en el desarrollo frontend junto con HTML y CSS. Además, gracias a frameworks como React, Angular y Vue, así como a entornos como Node.js, JavaScript también es ampliamente utilizado para crear aplicaciones del lado del servidor, móviles y hasta de escritorio."
     },
     {
       "id": 3,
@@ -24,7 +26,8 @@
       "profesor": "Sergio Luis",
       "niveles": 10,
       "descripcion": "Comprende la programación orientada a objetos y conceptos básicos en C++.",
-      "dificultad": "Media"
+      "dificultad": "Media",
+      "larga": "C++ es un lenguaje de programación compilado, potente y de propósito general, especialmente conocido por su alto rendimiento. Es ideal para programación orientada a objetos y se utiliza en el desarrollo de software de sistemas, videojuegos, motores gráficos, simuladores, y aplicaciones de tiempo real. Su control detallado sobre la memoria lo hace preferido en situaciones donde la eficiencia es crítica."
     },
     {
       "id": 4,
@@ -33,7 +36,9 @@
       "profesor": "Alberto Barbacid",
       "niveles": 10,
       "descripcion": "Curso práctico para desarrollar aplicaciones con Java.",
-      "dificultad": "Media"
+      "dificultad": "Media",
+      "larga": "Java es un lenguaje de programación robusto, orientado a objetos, y multiplataforma gracias a la máquina virtual de Java (JVM). Se usa ampliamente en el desarrollo de aplicaciones empresariales, backend de sistemas, apps móviles para Android, y sistemas distribuidos. Su lema “escribe una vez, ejecuta en cualquier lugar” ha hecho que Java tenga una presencia sólida en el entorno corporativo."
+      
     },
     {
       "id": 5,
@@ -42,7 +47,8 @@
       "profesor": "Alberto Barbacid",
       "niveles": 10,
       "descripcion": "Aprende a programar con C# y el entorno .NET desde cero.",
-      "dificultad": "Fácil"
+      "dificultad": "Fácil",
+      "larga": "C# es un lenguaje moderno y orientado a objetos desarrollado por Microsoft. Es el principal lenguaje para desarrollar aplicaciones dentro del ecosistema .NET, lo que incluye desde aplicaciones de escritorio con WPF, servicios web, videojuegos en Unity, hasta aplicaciones móviles con Xamarin. C# combina la potencia de lenguajes como C++ con la simplicidad de Java, lo que lo convierte en una herramienta muy productiva."
     },
     {
       "id": 6,
@@ -51,7 +57,8 @@
       "profesor": "Sergio Luis",
       "niveles": 10,
       "descripcion": "Desarrolla aplicaciones web dinámicas con PHP y bases de datos MySQL.",
-      "dificultad": "Media"
+      "dificultad": "Media",
+      "larga": "PHP es un lenguaje del lado del servidor muy utilizado para el desarrollo web dinámico. MySQL, por su parte, es uno de los sistemas de gestión de bases de datos relacionales más populares. Juntos forman una combinación clásica en el desarrollo de sitios web y aplicaciones backend. Plataformas como WordPress, Joomla o Drupal están construidas sobre PHP y MySQL, lo que garantiza su relevancia continua en la web."
     },
     {
       "id": 7,
@@ -60,7 +67,8 @@
       "profesor": "Alberto Barbacid",
       "niveles": 10,
       "descripcion": "Crea aplicaciones para Android usando Ionic.",
-      "dificultad": "Alta"
+      "dificultad": "Alta",
+      "larga": "Ionic es un framework open-source para el desarrollo de aplicaciones móviles híbridas usando tecnologías web como HTML, CSS y JavaScript. Permite crear apps que funcionan tanto en Android como en iOS desde una sola base de código. Se integra fácilmente con Angular, React o Vue y es compatible con Capacitor y Cordova para acceder a funcionalidades nativas del dispositivo."
     },
     {
       "id": 8,
@@ -69,7 +77,8 @@
       "profesor": "Sergio Luis",
       "niveles": 10,
       "descripcion": "Aprende ASP y crea servicios web de alto rendimiento.",
-      "dificultad": "Alta"
+      "dificultad": "Alta",
+      "larga": "ASP.NET es un framework de desarrollo web de Microsoft que permite crear aplicaciones dinámicas, robustas y escalables. Con soporte para C# y VB.NET, es ideal para construir sitios corporativos, APIs REST, y servicios web. Su integración con el ecosistema .NET y herramientas como Visual Studio lo hacen especialmente útil en entornos empresariales."
     }
   ]
   

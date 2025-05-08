@@ -6,7 +6,12 @@
     height: 80px;
     padding-bottom: 5px;
     border-bottom: 4px #028bad solid;
-    
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; 
+    background-color: white; 
 }
 .icono{
     display: inline;

@@ -1,27 +1,14 @@
+<h2>Nuestros cursos...</h2>
 <div class="content">
-    <div class="course-card">
-        <img src="https://via.placeholder.com/320x180.png?text=Curso+Online" alt="Curso" class="course-image" />
+    <div *ngFor="let item of cursos" class="course-card">
+        <img src="{{item.imagen}}" alt="Curso" class="course-image" />
         <div class="course-content">
-        <h2 class="course-title">Introducción a HTML y CSS</h2>
-        <p class="course-description">Aprende los fundamentos del diseño web con este curso básico de HTML y CSS.</p>
-        <button class="course-button">Inscribirse</button>
+        <h2 class="course-title">{{item.nombre}}</h2>
+        <p class="course-description">{{item.descripcion}}</p>
+        <p class="course-description">Dificultad: {{item.dificultad}}</p>
+        <a routerLink="/home/cursos/detalles/{{item.id}}"><button class="course-button" >Ver mas</button></a>
+        
         </div>
     </div>
-    <div class="course-card">
-        <img src="https://via.placeholder.com/320x180.png?text=Curso+Online" alt="Curso" class="course-image" />
-        <div class="course-content">
-        <h2 class="course-title">Introducción a HTML y CSS</h2>
-        <p class="course-description">Aprende los fundamentos del diseño web con este curso básico de HTML y CSS.</p>
-        <button class="course-button">Inscribirse</button>
-        </div>
-    </div>
-    <div class="course-card">
-        <img src="https://via.placeholder.com/320x180.png?text=Curso+Online" alt="Curso" class="course-image" />
-        <div class="course-content">
-        <h2 class="course-title">Introducción a HTML y CSS</h2>
-        <p class="course-description">Aprende los fundamentos del diseño web con este curso básico de HTML y CSS.</p>
-        <button class="course-button">Inscribirse</button>
-        </div>
-    </div>
-    
 </div>
+<h3>Más cursos proximamente!</h3>
