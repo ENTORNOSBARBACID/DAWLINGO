@@ -6,14 +6,23 @@ import { EstaticosModule } from '../estaticos/estaticos.module';
 import { CursosComponent } from './cursos/cursos.component';
 import { CursoDetalleComponent } from './curso-detalle/curso-detalle.component';
 import { InicioComponent } from './inicio/inicio.component';
-
-
+import { LeccionesComponent } from './lecciones/lecciones.component';
 
 @NgModule({
-  declarations: [HomeComponent, CursosComponent, CursoDetalleComponent, InicioComponent],
-  imports: [
-    CommonModule, RouterLink, RouterOutlet, EstaticosModule
+  declarations: [
+    HomeComponent,
+    CursosComponent,
+    CursoDetalleComponent,
+    InicioComponent,
+    LeccionesComponent,
   ],
-  exports:[HomeComponent, CursosComponent, CursoDetalleComponent, InicioComponent]
+  imports: [CommonModule, RouterLink, RouterOutlet, EstaticosModule],
+  exports: [
+    HomeComponent,
+    CursosComponent,
+    CursoDetalleComponent,
+    InicioComponent,
+    LeccionesComponent,
+  ],
 })
-export class ComponentModule { }
+export class ComponentModule {}
