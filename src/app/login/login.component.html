@@ -1,9 +1,20 @@
 <div>
-    <form method="POST">
-        <img src="/images/logo1.png" class="image">
-        <input type="text" class="text top" name="usuario" placeholder="Nombre de usuario"><br>
-        <input type="password" class="text" name="password" placeholder="Contraseña"><br>
-        <a routerLink="/home"><input type="button" class="boton" value="Aceptar"></a>
-    </form>
+  <img src="/images/logo1.png" class="image" />
+  <input
+    type="text"
+    class="text top"
+    [(ngModel)]="usuario"
+    placeholder="Nombre de usuario"
+  /><br />
+  <input
+    type="password"
+    class="text"
+    [(ngModel)]="password"
+    placeholder="Contraseña"
+  /><br />
+  <input type="button" class="boton" value="Aceptar" (click)="guardarDatos()" />
 </div>
 <app-footer></app-footer>
+<div class="error" *ngIf="error">
+  <p>Usuario o contraseña incorrectos</p>
+</div>
