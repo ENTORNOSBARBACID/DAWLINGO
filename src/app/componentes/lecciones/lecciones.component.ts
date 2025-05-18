@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ServicioService } from '../../servicio/servicio.service'; // Replace with the actual path
+import { ServicioService } from '../../servicios/servicio.service'; // Replace with the actual path
 
 @Component({
   selector: 'app-lecciones',

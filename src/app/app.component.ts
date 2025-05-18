@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { EstaticosModule } from './estaticos/estaticos.module';
-import { LoginComponent } from './login/login.component';
+import { ComponentModule } from './componentes/component.module';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, EstaticosModule, LoginComponent],
+  imports: [RouterOutlet, EstaticosModule, RouterModule, ComponentModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'TFG-DAW';
