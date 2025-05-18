@@ -1,21 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
-import { ICursos } from '../interfaces/cursos';
 import { environment } from '../enviroments/enviroments';
 import { shareReplay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ServicioService {
+export class LoginService {
   constructor(private http: HttpClient) {}
-  public getCursos(): Observable<ICursos[]> {
-    return this.http.get<ICursos[]>('sources/cursos.json');
-  }
-  getAllLecciones() {
+
+  login(usuario: string, password: string) {
+    const body = {
+      nombre: usuario,
+      password: password,
+    };
     return this.http
-      .get(environment.apiUrl + '/Lecciones/GetAll')
+      .post(environment.apiUrl + '/Login/Login', body)
       .pipe(shareReplay());
   }
 }

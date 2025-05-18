@@ -5,9 +5,9 @@ import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, EstaticosModule, LoginComponent],
+  imports: [RouterOutlet, EstaticosModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'TFG-DAW';

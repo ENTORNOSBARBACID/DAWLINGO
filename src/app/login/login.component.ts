@@ -1,16 +1,33 @@
 import { Component } from '@angular/core';
 import { EstaticosModule } from '../estaticos/estaticos.module';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ComponentModule } from '../componentes/component.module';
+import { LoginService } from '../servicio/login.service';
+import { FormsModule } from '@angular/forms'; // Importa FormsModule
 
 @Component({
   selector: 'app-login',
-  imports: [EstaticosModule, RouterLink, ComponentModule],
+  imports: [EstaticosModule, ComponentModule, FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  changePage(){
+  usuario: string = '';
+  password: string = '';
 
+  constructor(private login: LoginService, private router: Router) {}
+
+  guardarDatos() {
+    this.login.login(this.usuario, this.password).subscribe({
+      next: (data: any) => {
+        console.log('DATOS', data);
+        if (data.type === 1) {
+          console.log('Nombre', data.nombre);
+          this.router.navigate(['/home'], { state: { usuario: data.nombre } });
+        } else {
+          alert('Usuario o contraseña incorrectos');
+        }
+      },
+    });
   }
 }
