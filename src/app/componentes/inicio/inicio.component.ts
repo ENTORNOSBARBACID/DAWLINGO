@@ -13,6 +13,8 @@ export class InicioComponent {
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state;
-    this.nombreUsuario = state?.['usuario'] || 'Invitado';
+
+    this.nombreUsuario =
+      state?.['usuario'] || sessionStorage.getItem('usuario') || 'Invitado';
   }
 }

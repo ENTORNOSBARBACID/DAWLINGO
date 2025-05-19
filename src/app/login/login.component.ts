@@ -22,8 +22,8 @@ export class LoginComponent {
       next: (data: any) => {
         console.log('DATOS', data);
         if (data.type === 1) {
-          console.log('Nombre', data.nombre);
-          this.router.navigate(['/home'], { state: { usuario: data.nombre } });
+          sessionStorage.setItem('usuario', data.nombre);
+          this.router.navigate(['/home']);
         } else {
           alert('Usuario o contraseña incorrectos');
         }
