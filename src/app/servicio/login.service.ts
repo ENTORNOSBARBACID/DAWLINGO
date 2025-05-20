@@ -18,4 +18,14 @@ export class LoginService {
       .post(environment.apiUrl + '/Login/Login', body)
       .pipe(shareReplay());
   }
+
+    info(usuario: string) {
+    const body = {
+      Nombre: usuario
+    };
+    console.log(body)
+    return this.http
+      .post(environment.apiUrl + '/Login/Info', body)
+      .pipe(shareReplay());
+  }
 }

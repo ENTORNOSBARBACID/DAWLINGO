@@ -1,0 +1,17 @@
+  .main {
+    margin-top:30px;
+    background: linear-gradient(120deg, #36aff5ce, #005e6e);
+    color: black;
+    text-align: center;
+    padding: 8rem 2rem;
+    border-radius: 20px;
+    margin-bottom: 50px;
+  }
+  .value{
+    height: 2.5em;
+    border-radius: 10px;
+  }
+  img{
+    height: 100px;
+    width: 100px;
+  }

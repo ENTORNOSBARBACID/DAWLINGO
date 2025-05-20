@@ -5,6 +5,7 @@ import { CursoDetalleComponent } from './componentes/curso-detalle/curso-detalle
 import { CursosComponent } from './componentes/cursos/cursos.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { LeccionesComponent } from './componentes/lecciones/lecciones.component';
+import { MiCuentaComponent } from './componentes/mi-cuenta/mi-cuenta.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -16,6 +17,7 @@ export const routes: Routes = [
       { path: 'cursos', component: CursosComponent },
       { path: 'cursos/detalles/:id', component: CursoDetalleComponent },
       { path: 'lecciones', component: LeccionesComponent },
+      { path: 'mi-cuenta', component: MiCuentaComponent },
 
       // más rutas hijas si las necesitas
     ],
