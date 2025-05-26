@@ -8,6 +8,7 @@ import { CursoDetalleComponent } from './curso-detalle/curso-detalle.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { LeccionesComponent } from './lecciones/lecciones.component';
 import { MiCuentaComponent } from './mi-cuenta/mi-cuenta.component';
+import { CursoNivelesComponent } from './curso-niveles/curso-niveles.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MiCuentaComponent } from './mi-cuenta/mi-cuenta.component';
     CursoDetalleComponent,
     InicioComponent,
     LeccionesComponent,
-    MiCuentaComponent
+    MiCuentaComponent,
+    CursoNivelesComponent,
   ],
   imports: [CommonModule, RouterLink, RouterOutlet, EstaticosModule],
   exports: [
@@ -25,7 +27,8 @@ import { MiCuentaComponent } from './mi-cuenta/mi-cuenta.component';
     CursoDetalleComponent,
     InicioComponent,
     LeccionesComponent,
-    MiCuentaComponent
+    MiCuentaComponent,
+    CursoNivelesComponent,
   ],
 })
 export class ComponentModule {}
