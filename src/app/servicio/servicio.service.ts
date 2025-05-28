@@ -30,4 +30,12 @@ export class ServicioService {
       })
       .pipe(shareReplay());
   }
+
+    getPreguntas(id: number) {
+    return this.http
+      .get(environment.apiUrl + '/Preguntas/GetAll', {
+        params: { id },
+      })
+      .pipe(shareReplay());
+  }
 }

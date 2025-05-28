@@ -5,17 +5,19 @@
     <h2>Lecciones</h2>
     <h2>{{ nombreUsuario }}</h2>
   </div>
-  <div>
+  <div *ngFor="let leccion of lecciones">
+    <a routerLink="/home/lecciones/{{leccion.id}}">
     <button
-      *ngFor="let leccion of lecciones"
       class="leccion-btn"
       [class.disabled]="false"
       [disabled]="false"
       (click)="seleccionarLeccion(leccion)"
+      routerLink="home/lecciones/leccion.id"
     >
       <h3>{{ leccion.nombre }}</h3>
       <p>{{ leccion.descripcion }}</p>
     </button>
+    </a>
   </div>
 </div>
 
