@@ -15,9 +15,11 @@ export class ServicioService {
     return this.http.get<ICursos[]>('sources/cursos.json');
   }
 
-  getAllLecciones() {
+  getAllLecciones(nivel: any) {
     return this.http
-      .get(environment.apiUrl + '/Niveles/GetAll')
+      .get(environment.apiUrl + '/Lecciones/GetAll', {
+        params: { id: nivel.toString() },
+      })
       .pipe(shareReplay());
   }
 

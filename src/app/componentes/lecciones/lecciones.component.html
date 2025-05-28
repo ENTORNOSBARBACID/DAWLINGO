@@ -1,1 +1,24 @@
-<p>lecciones works!</p>
+<div *ngIf="lecciones.length > 0; else noLecciones">
+  <div
+    style="display: flex; justify-content: space-between; align-items: center"
+  >
+    <h2>Lecciones</h2>
+    <h2>{{ nombreUsuario }}</h2>
+  </div>
+  <div>
+    <button
+      *ngFor="let leccion of lecciones"
+      class="leccion-btn"
+      [class.disabled]="false"
+      [disabled]="false"
+      (click)="seleccionarLeccion(leccion)"
+    >
+      <h3>{{ leccion.nombre }}</h3>
+      <p>{{ leccion.descripcion }}</p>
+    </button>
+  </div>
+</div>
+
+<ng-template #noLecciones>
+  <p>No se encontraron lecciones para este nivel.</p>
+</ng-template>

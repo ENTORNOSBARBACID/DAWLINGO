@@ -1,0 +1,22 @@
+.nivel-btn {
+  display: block;
+  margin: 10px 0;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.nivel-btn:hover:not(.disabled) {
+  background-color: #2980b9;
+}
+
+.nivel-btn.disabled {
+  background-color: #bdc3c7;
+  color: #2c3e50;
+  cursor: not-allowed;
+}
