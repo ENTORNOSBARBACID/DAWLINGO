@@ -1,1 +1,17 @@
-{{id}}
+<div *ngIf="preguntaActual">
+  <h2>Pregunta {{ indice + 1 }} de {{ preguntas.length }}</h2>
+  <p>{{ preguntaActual?.enunciado }}</p>
+
+  <input
+    type="text"
+    [(ngModel)]="respuestaUsuario"
+    placeholder="Tu respuesta"
+    class="respuesta-input"
+  />
+
+  <button (click)="verificarRespuesta()">Enviar respuesta</button>
+</div>
+
+<div *ngIf="!preguntaActual">
+  <p>Cargando pregunta...</p>
+</div>

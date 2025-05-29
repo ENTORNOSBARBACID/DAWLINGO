@@ -1,0 +1,10 @@
+.respuesta-input {
+  padding: 8px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 12px;
+}
+button {
+  padding: 8px 16px;
+  cursor: pointer;
+}

@@ -10,6 +10,7 @@ import { LeccionesComponent } from './lecciones/lecciones.component';
 import { MiCuentaComponent } from './mi-cuenta/mi-cuenta.component';
 import { CursoNivelesComponent } from './curso-niveles/curso-niveles.component';
 import { PreguntasComponent } from './preguntas/preguntas.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,9 +21,15 @@ import { PreguntasComponent } from './preguntas/preguntas.component';
     LeccionesComponent,
     MiCuentaComponent,
     CursoNivelesComponent,
-    PreguntasComponent
+    PreguntasComponent,
   ],
-  imports: [CommonModule, RouterLink, RouterOutlet, EstaticosModule],
+  imports: [
+    CommonModule,
+    RouterLink,
+    RouterOutlet,
+    EstaticosModule,
+    FormsModule,
+  ],
   exports: [
     HomeComponent,
     CursosComponent,
@@ -31,7 +38,7 @@ import { PreguntasComponent } from './preguntas/preguntas.component';
     LeccionesComponent,
     MiCuentaComponent,
     CursoNivelesComponent,
-    PreguntasComponent
+    PreguntasComponent,
   ],
 })
 export class ComponentModule {}

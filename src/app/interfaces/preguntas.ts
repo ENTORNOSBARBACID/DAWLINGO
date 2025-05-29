@@ -1,6 +1,7 @@
 export interface IPreguntas {
   id: number;
-  pregunta_id: number;
-  texto: string;
-  es_correcta: number;
+  leccionId: number;
+  tipo: string;
+  enunciado: string;
+  dificultad: string;
 }
