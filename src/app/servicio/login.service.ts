@@ -7,6 +7,7 @@ import { shareReplay } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginService {
+  id:number=0;
   constructor(private http: HttpClient) {}
 
   login(usuario: string, password: string) {
@@ -27,5 +28,12 @@ export class LoginService {
     return this.http
       .post(environment.apiUrl + '/Login/Info', body)
       .pipe(shareReplay());
+  }
+  guardarId(id:number){
+    this.id=id
+    console.log('id '+this.id); 
+  }
+  retornarId(){
+    return this.id;
   }
 }

@@ -3,6 +3,7 @@ import { ICursos } from '../../interfaces/cursos';
 import { ServicioService } from '../../servicio/servicio.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Router } from '@angular/router';
+import { LoginService } from '../../servicio/login.service';
 
 @Component({
   selector: 'app-curso-detalle',
@@ -13,10 +14,12 @@ import { Router } from '@angular/router';
 export class CursoDetalleComponent {
   cursos: ICursos[] = [];
   id: number = 0;
+  idUsu: number=0;
   constructor(
     private data: ServicioService,
     private router: ActivatedRoute,
-    private route: Router
+    private route: Router,
+    private login: LoginService
   ) {
     this.data.getCursos().subscribe((a) => {
       a.forEach((e) => {
@@ -25,10 +28,16 @@ export class CursoDetalleComponent {
     });
   }
   ngOnInit() {
+    this.getId()
     this.router.paramMap.subscribe((params: ParamMap) => {
       const idParam = params.get('id') || '';
       this.id = idParam ? Number(idParam) : 0;
     });
+    
+  }
+  getId(){
+    this.idUsu=this.login.retornarId()
+    console.log("id: "+this.idUsu)
   }
 
   inscribirse(curso: ICursos) {

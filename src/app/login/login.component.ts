@@ -23,11 +23,16 @@ export class LoginComponent {
         console.log('DATOS', data);
         if (data.type === 1) {
           sessionStorage.setItem('usuario', data.nombre);
-          this.router.navigate(['/home']);
+          this.guardarId(data);
         } else {
           alert('Usuario o contraseña incorrectos');
         }
       },
     });
+    
+  }
+  guardarId(data:any){
+  this.login.guardarId(data.type);
+  this.router.navigate(['/home']);
   }
 }
