@@ -8,6 +8,7 @@ import { LeccionesComponent } from './componentes/lecciones/lecciones.component'
 import { MiCuentaComponent } from './componentes/mi-cuenta/mi-cuenta.component';
 import { CursoNivelesComponent } from './componentes/curso-niveles/curso-niveles.component';
 import { PreguntasComponent } from './componentes/preguntas/preguntas.component';
+import { InfoLeccionesComponent } from './componentes/info-lecciones/info-lecciones.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -22,6 +23,7 @@ export const routes: Routes = [
       { path: 'mi-cuenta', component: MiCuentaComponent },
       { path: 'curso-niveles/:nombre', component: CursoNivelesComponent },
       { path: 'lecciones/:id', component: PreguntasComponent },
+      { path: 'home/info-lecciones/:id', component: InfoLeccionesComponent },
     ],
   },
 ];

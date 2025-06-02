@@ -25,8 +25,6 @@ export class LeccionesComponent {
 
   seleccionarLeccion(leccion: any) {
     console.log('Lección seleccionada:', leccion);
-    this.router.navigate(['home/lecciones', leccion.id], {
-      state: { usuario: this.nombreUsuario },
-    });
+    this.router.navigate(['home/info-lecciones', leccion.id]);
   }
 }

@@ -47,14 +47,27 @@ export class ServicioService {
     );
   }
 
-  addUsuarioCurso(idUsu:number, idCurso:number){
-    
+  addUsuarioCurso(idUsu: number, idCurso: number) {
     const body = {
       usuario_id: idUsu,
-      curso_id: idCurso
+      curso_id: idCurso,
     };
-    console.log(body)
-    return this.http
-      .post(environment.apiUrl + '/UsuarioProgreso/addUsuarioProgreso', body);
+    console.log(body);
+    return this.http.post(
+      environment.apiUrl + '/UsuarioProgreso/addUsuarioProgreso',
+      body
+    );
+  }
+
+  UsuarioApuntado(idUsu: number, idCurso: number) {
+    const body = {
+      usuario_id: idUsu,
+      curso_id: idCurso,
+    };
+    console.log(body);
+    return this.http.post(
+      environment.apiUrl + '/UsuarioProgreso/addUsuarioProgreso',
+      body
+    );
   }
 }

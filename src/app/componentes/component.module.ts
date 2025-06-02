@@ -11,6 +11,7 @@ import { MiCuentaComponent } from './mi-cuenta/mi-cuenta.component';
 import { CursoNivelesComponent } from './curso-niveles/curso-niveles.component';
 import { PreguntasComponent } from './preguntas/preguntas.component';
 import { FormsModule } from '@angular/forms';
+import { InfoLeccionesComponent } from './info-lecciones/info-lecciones.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     MiCuentaComponent,
     CursoNivelesComponent,
     PreguntasComponent,
+    InfoLeccionesComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +41,7 @@ import { FormsModule } from '@angular/forms';
     MiCuentaComponent,
     CursoNivelesComponent,
     PreguntasComponent,
+    InfoLeccionesComponent,
   ],
 })
 export class ComponentModule {}
