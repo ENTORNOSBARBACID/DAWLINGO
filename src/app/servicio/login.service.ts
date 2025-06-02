@@ -31,9 +31,19 @@ export class LoginService {
   }
   guardarId(id:number){
     this.id=id
+    sessionStorage.setItem('idUsuario', id.toString()); 
     console.log('id '+this.id); 
   }
   retornarId(){
     return this.id;
+  }
+  addUsuarioCurso(idUsu:number, idCurso:number){
+        const body = {
+      usuario_id: idUsu,
+      curso_id: idCurso
+    };
+    this.http
+      .post(environment.apiUrl + '/Login/Info', body)
+      .pipe(shareReplay());
   }
 }

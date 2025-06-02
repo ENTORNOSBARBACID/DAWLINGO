@@ -46,4 +46,15 @@ export class ServicioService {
       body
     );
   }
+
+  addUsuarioCurso(idUsu:number, idCurso:number){
+    
+    const body = {
+      usuario_id: idUsu,
+      curso_id: idCurso
+    };
+    console.log(body)
+    return this.http
+      .post(environment.apiUrl + '/UsuarioProgreso/addUsuarioProgreso', body);
+  }
 }

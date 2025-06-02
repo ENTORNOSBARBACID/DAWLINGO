@@ -41,8 +41,14 @@ export class CursoDetalleComponent {
   }
 
   inscribirse(curso: ICursos) {
-    if (curso.nombre.toLowerCase().includes('python')) {
-      this.route.navigate(['/home/curso-niveles', curso.nombre]);
-    }
+    this.data.addUsuarioCurso(this.idUsu, curso.id).subscribe({
+  next: (res: any) => {
+    console.log("Mensaje:", res.mensaje);
+    this.route.navigate(['/home/curso-niveles', curso.nombre]);
+  },
+  error: (err) => {
+    console.error("Error al inscribirse:", err);
+  }
+});
   }
 }
