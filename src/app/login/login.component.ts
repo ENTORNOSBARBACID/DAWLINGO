@@ -21,9 +21,9 @@ export class LoginComponent {
     this.login.login(this.usuario, this.password).subscribe({
       next: (data: any) => {
         console.log('DATOS', data);
-        if (data.type === 1) {
+        if (data.type === "Admin") {
           sessionStorage.setItem('usuario', data.nombre);
-          this.guardarId(data);
+          this.guardarId(data.id);
         } else {
           alert('Usuario o contraseña incorrectos');
         }
@@ -31,8 +31,8 @@ export class LoginComponent {
     });
     
   }
-  guardarId(data:any){
-  this.login.guardarId(data.type);
+  guardarId(data:number){
+  this.login.guardarId(data);
   this.router.navigate(['/home']);
   }
 }
