@@ -1,7 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ServicioService } from '../../servicio/servicio.service'; // Replace with the actual path
+import { Component } from '@angular/core';
+import { ICursos } from '../../interfaces/cursos';
+import { ServicioService } from '../../servicio/servicio.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Router } from '@angular/router';
+import { ILecciones } from '../../interfaces/lecciones';
+import { LoginService } from '../../servicio/login.service';
+import { IUsuario } from '../../interfaces/usuarios';
+import { IProgreso } from '../../interfaces/progresoUsuario';
+
 @Component({
   selector: 'app-lecciones',
   standalone: false,
@@ -9,22 +15,35 @@ import { Router } from '@angular/router';
   styleUrl: './lecciones.component.css',
 })
 export class LeccionesComponent {
-  lecciones: any[] = [];
-  nombreUsuario: string = '';
+  lecciones: ILecciones[] = [];
+  usu?:IProgreso;
+  id:number=0;
+  idUsu:number=0;
 
-  constructor(private router: Router) {
-    const navigation = this.router.getCurrentNavigation();
-    const state = navigation?.extras.state as { lecciones: any[] };
+  constructor(private route: Router, private data: ServicioService, private activatedRouter: ActivatedRoute, private login: LoginService) {
+      this.activatedRouter.paramMap.subscribe((params: ParamMap) => {
+      const idParam = params.get('id') || '';
+      this.id = idParam ? Number(idParam) : 0;
+    });
 
-    if (state?.lecciones) {
-      this.lecciones = state.lecciones;
-    } else {
-      // Manejar caso sin datos (ej. recargar desde backend)
-    }
+    this.idUsu= this.login.retornarId();
+
   }
+  ngOnInit(){
+      this.data.getAllLecciones(this.id).subscribe((a) => {
+      a.forEach((e) => {
+        this.lecciones.push(e);
+      });
+    });
 
+    this.data.getUsuarioProgreso(this.idUsu, this.id).subscribe((a) =>{
+      this.usu=a
+      console.log(this.usu);
+    });
+    
+  }
   seleccionarLeccion(leccion: any) {
     console.log('Lección seleccionada:', leccion);
-    this.router.navigate(['home/info-lecciones', leccion.id]);
+    this.route.navigate(['home/info-lecciones', leccion.id]);
   }
 }

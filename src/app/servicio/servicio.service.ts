@@ -5,6 +5,8 @@ import { ICursos } from '../interfaces/cursos';
 import { environment } from '../enviroments/enviroments';
 import { shareReplay } from 'rxjs';
 import { IPreguntas } from '../interfaces/preguntas';
+import { ILecciones } from '../interfaces/lecciones';
+import { IProgreso } from '../interfaces/progresoUsuario';
 
 @Injectable({
   providedIn: 'root',
@@ -16,13 +18,13 @@ export class ServicioService {
     return this.http.get<ICursos[]>('sources/cursos.json');
   }
 
-  getAllLecciones(nivel: any) {
-    return this.http
-      .get(environment.apiUrl + '/Lecciones/GetAll', {
-        params: { id: nivel.toString() },
-      })
-      .pipe(shareReplay());
-  }
+getAllLecciones(nivel: any): Observable<ILecciones[]> {
+  return this.http
+    .get<ILecciones[]>(environment.apiUrl + '/Lecciones/GetAll', {
+      params: { id: nivel.toString() },
+    })
+    .pipe(shareReplay());
+}
 
   getNivel(nombreCurso: string) {
     return this.http
@@ -47,27 +49,22 @@ export class ServicioService {
     );
   }
 
-  addUsuarioCurso(idUsu: number, idCurso: number) {
+  addUsuarioCurso(idUsu:number, idCurso:number){
     const body = {
       usuario_id: idUsu,
-      curso_id: idCurso,
+      curso_id: idCurso
     };
-    console.log(body);
-    return this.http.post(
-      environment.apiUrl + '/UsuarioProgreso/addUsuarioProgreso',
-      body
-    );
+    console.log(body)
+    return this.http
+      .post(environment.apiUrl + '/UsuarioProgreso/addUsuarioProgreso', body);
   }
 
-  UsuarioApuntado(idUsu: number, idCurso: number) {
+    getUsuarioProgreso(idUsu:number, idCurso:number): Observable<IProgreso>{
     const body = {
       usuario_id: idUsu,
-      curso_id: idCurso,
+      curso_id: idCurso
     };
-    console.log(body);
-    return this.http.post(
-      environment.apiUrl + '/UsuarioProgreso/addUsuarioProgreso',
-      body
-    );
-  }
+    console.log(body)
+    return this.http.post<IProgreso>(environment.apiUrl + '/UsuarioProgreso/getUsuarioProgreso', body);
+    }
 }

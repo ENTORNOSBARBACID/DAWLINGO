@@ -1,26 +1,29 @@
-<div *ngIf="lecciones.length > 0; else noLecciones">
-  <div
-    style="display: flex; justify-content: space-between; align-items: center"
-  >
-    <h2>Lecciones</h2>
-    <h2>{{ nombreUsuario }}</h2>
-  </div>
+<ng-container *ngIf="usu && lecciones.length > 0; else noLecciones">
   <div *ngFor="let leccion of lecciones">
-    <a routerLink="/home/lecciones/{{ leccion.id }}">
-      <button
-        class="leccion-btn"
-        [class.disabled]="false"
-        [disabled]="false"
-        (click)="seleccionarLeccion(leccion)"
-        routerLink="home/lecciones/leccion.id"
-      >
-        <h3>{{ leccion.nombre }}</h3>
-        <p>{{ leccion.descripcion }}</p>
-      </button>
-    </a>
+      <div *ngIf="usu.leccion_id < leccion.orden; else desbloqueados">
+        <button
+          class="leccion-btn"
+          [class.disabled]="true"
+          (click)="seleccionarLeccion(leccion)"
+          routerLink="home/lecciones/leccion.id"
+        >
+          <h3>{{ leccion.nombre }}</h3>
+          <p>{{ leccion.descripcion }}</p>
+        </button>
+      </div>
+      <ng-template #desbloqueados>
+        <button
+          class="leccion-btn"
+          [class.disabled]="false"
+          (click)="seleccionarLeccion(leccion)"
+          routerLink="home/lecciones/leccion.id"
+        >
+          <h3>{{ leccion.nombre }}</h3>
+          <p>{{ leccion.descripcion }}</p>
+        </button>
+      </ng-template>
   </div>
-</div>
-
+</ng-container>
 <ng-template #noLecciones>
   <p>No se encontraron lecciones para este nivel.</p>
 </ng-template>

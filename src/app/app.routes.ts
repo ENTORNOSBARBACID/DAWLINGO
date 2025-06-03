@@ -19,7 +19,7 @@ export const routes: Routes = [
       { path: '', component: InicioComponent },
       { path: 'cursos', component: CursosComponent },
       { path: 'cursos/detalles/:id', component: CursoDetalleComponent },
-      { path: 'lecciones', component: LeccionesComponent },
+      { path: 'lecciones/:id', component: LeccionesComponent },
       { path: 'mi-cuenta', component: MiCuentaComponent },
       { path: 'curso-niveles/:nombre', component: CursoNivelesComponent },
       { path: 'lecciones/:id', component: PreguntasComponent },

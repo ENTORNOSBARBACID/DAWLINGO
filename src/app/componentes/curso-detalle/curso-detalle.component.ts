@@ -14,7 +14,7 @@ import { LoginService } from '../../servicio/login.service';
 export class CursoDetalleComponent {
   cursos: ICursos[] = [];
   id: number = 0;
-  idUsu: number = 0;
+  idUsu: number=0;
   constructor(
     private data: ServicioService,
     private router: ActivatedRoute,
@@ -28,26 +28,27 @@ export class CursoDetalleComponent {
     });
   }
   ngOnInit() {
-    this.getId();
+    this.getId()
     this.router.paramMap.subscribe((params: ParamMap) => {
       const idParam = params.get('id') || '';
       this.id = idParam ? Number(idParam) : 0;
     });
+    
   }
-  getId() {
-    this.idUsu = this.login.retornarId();
-    console.log('id: ' + this.idUsu);
+  getId(){
+    this.idUsu=this.login.retornarId();
+    console.log("id: "+this.idUsu)
   }
 
   inscribirse(curso: ICursos) {
     this.data.addUsuarioCurso(this.idUsu, curso.id).subscribe({
-      next: (res: any) => {
-        console.log('Mensaje:', res.mensaje);
-        this.route.navigate(['/home/curso-niveles', curso.nombre]);
-      },
-      error: (err) => {
-        console.error('Error al inscribirse:', err);
-      },
-    });
+    next: (res: any) => {
+      console.log("Mensaje:", res.mensaje);
+      this.route.navigate(['/home/curso-niveles', curso.nombre]);
+    },
+  error: (err) => {
+    console.error("Error al inscribirse:", err);
+  }
+});
   }
 }

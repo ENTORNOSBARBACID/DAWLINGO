@@ -7,7 +7,7 @@ import { shareReplay } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginService {
-  id:number=0;
+  private id:number=0;
   constructor(private http: HttpClient) {}
 
   login(usuario: string, password: string) {
@@ -30,20 +30,18 @@ export class LoginService {
       .pipe(shareReplay());
   }
   guardarId(id:number){
-    this.id=id
-    sessionStorage.setItem('idUsuario', id.toString()); 
-    console.log('id '+this.id); 
+  this.id = id;
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('idUsuario', id.toString());
+  }
+  console.log('id ' + this.id);
   }
   retornarId(){
-    return this.id;
+  if (typeof window !== 'undefined') {
+    const id = localStorage.getItem('idUsuario');
+    this.id = id ? +id : 0;
   }
-  addUsuarioCurso(idUsu:number, idCurso:number){
-        const body = {
-      usuario_id: idUsu,
-      curso_id: idCurso
-    };
-    this.http
-      .post(environment.apiUrl + '/Login/Info', body)
-      .pipe(shareReplay());
+  return this.id;
   }
+
 }

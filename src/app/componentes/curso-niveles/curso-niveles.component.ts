@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ServicioService } from '../../servicio/servicio.service';
-import { ActivatedRoute, Router } from '@angular/router'; // 👈 añade Router
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-curso-niveles',
@@ -16,7 +16,7 @@ export class CursoNivelesComponent {
   constructor(
     private leccionesService: ServicioService,
     private route: ActivatedRoute,
-    private router: Router // 👈 inyecta el Router
+    private router: Router
   ) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state;
@@ -45,14 +45,6 @@ export class CursoNivelesComponent {
   }
 
   seleccionarNivel(nivel: any): void {
-    this.leccionesService.getAllLecciones(nivel.id).subscribe({
-      next: (data: any) => {
-        console.log('Lecciones', data);
-        this.router.navigate(['/home/lecciones'], {
-          state: { lecciones: data },
-        });
-      },
-    });
-    // Aquí podrías navegar o cargar lecciones
+  this.router.navigate(['/home/lecciones/'+nivel.id]);
   }
 }
