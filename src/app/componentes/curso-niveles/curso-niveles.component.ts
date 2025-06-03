@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ServicioService } from '../../servicio/servicio.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IProgreso } from '../../interfaces/progresoUsuario';
+import { LoginService } from '../../servicio/login.service';
+import { INiveles } from '../../interfaces/niveles';
 
 @Component({
   selector: 'app-curso-niveles',
@@ -10,19 +13,25 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CursoNivelesComponent {
   cursoNombre: string = '';
-  niveles: any[] = [];
+  niveles: INiveles[] = [];
   nombreUsuario: string = '';
-
+  usu?:IProgreso;
+  idUsu: number=0;
   constructor(
     private leccionesService: ServicioService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private data: ServicioService,
+    private login: LoginService,
   ) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state;
 
     this.nombreUsuario =
       state?.['usuario'] || sessionStorage.getItem('usuario') || 'Invitado';
+    
+    this.idUsu= this.login.retornarId();
+    console.log('idUsu: '+this.idUsu)
   }
 
   ngOnInit(): void {
@@ -34,14 +43,22 @@ export class CursoNivelesComponent {
         this.leccionesService.getNivel(this.cursoNombre).subscribe({
           next: (data: any) => {
             this.niveles = data;
-            console.log('recibido', data);
+            this.getUsuPro(this.niveles[0].cursoId)
+            console.log('recibido',this.niveles );
           },
           error: (error) => {
             console.error('Error al obtener niveles:', error);
           },
         });
-      }
-    });
+      } 
+  });
+}
+  getUsuPro(IdCurso:number){
+    console.log("idCurso: "+IdCurso);
+      this.data.getUsuarioProgreso(this.idUsu, IdCurso).subscribe((a) =>{
+        this.usu=a
+        console.log(this.usu);
+      });
   }
 
   seleccionarNivel(nivel: any): void {

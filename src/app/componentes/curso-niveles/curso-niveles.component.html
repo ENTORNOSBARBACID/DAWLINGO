@@ -2,18 +2,30 @@
   <h2>Niveles del curso: {{ cursoNombre }}</h2>
   <h2>{{ nombreUsuario }}</h2>
 </div>
-
-<div *ngIf="niveles.length > 0; else cargando">
-  <button
-    *ngFor="let nivel of niveles"
-    class="nivel-btn"
-    [class.disabled]="nivel.valido !== 1"
-    [disabled]="nivel.valido !== 1"
-    (click)="seleccionarNivel(nivel)"
-  >
-    {{ nivel.numeroNivel }}. {{ nivel.nombre }}
-  </button>
-</div>
+<div *ngIf="usu && niveles.length > 0; else cargando">
+  <div *ngFor="let nivel of niveles">
+    <div *ngIf="(usu.nivel_id ?? 0) >= (nivel.id ?? 0); else desbloqueados">
+      <button
+        class="nivel-btn"
+        [class.disabled]="false"
+        [disabled]="false"
+        (click)="seleccionarNivel(nivel)"
+      >
+        {{ nivel.numeroNivel }}. {{ nivel.nombre }}
+      </button>
+    </div>
+      <ng-template #desbloqueados>
+        <button
+          class="nivel-btn"
+          [class.disabled]="true"
+          [disabled]="true"
+          (click)="seleccionarNivel(nivel)"
+        >
+          {{ nivel.numeroNivel }}. {{ nivel.nombre }}
+        </button>
+      </ng-template>
+  </div>  
+</div>  
 
 <ng-template #cargando>
   <p>Cargando niveles...</p>

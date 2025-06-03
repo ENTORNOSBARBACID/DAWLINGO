@@ -1,26 +1,42 @@
 <ng-container *ngIf="usu && lecciones.length > 0; else noLecciones">
   <div *ngFor="let leccion of lecciones">
-      <div *ngIf="usu.leccion_id < leccion.orden; else desbloqueados">
-        <button
-          class="leccion-btn"
-          [class.disabled]="true"
-          (click)="seleccionarLeccion(leccion)"
-          routerLink="home/lecciones/leccion.id"
-        >
-          <h3>{{ leccion.nombre }}</h3>
-          <p>{{ leccion.descripcion }}</p>
-        </button>
+    <div *ngIf="usu.nivel_id > leccion.nivelId; else incompleto">
+          <button
+            class="leccion-btn"
+            [class.disabled]="false"
+            [disabled]="false"
+            (click)="seleccionarLeccion(leccion)"
+            routerLink="home/lecciones/leccion.id"
+          >
+            <h3>{{ leccion.nombre }}</h3>
+            <p>{{ leccion.descripcion }}</p>
+          </button>
       </div>
-      <ng-template #desbloqueados>
-        <button
-          class="leccion-btn"
-          [class.disabled]="false"
-          (click)="seleccionarLeccion(leccion)"
-          routerLink="home/lecciones/leccion.id"
-        >
-          <h3>{{ leccion.nombre }}</h3>
-          <p>{{ leccion.descripcion }}</p>
-        </button>
+      <ng-template #incompleto>
+        <div *ngIf="usu.leccion_id >= leccion.orden ; else desbloqueados">
+          <button
+            class="leccion-btn"
+            [class.disabled]="false"
+            [disabled]="false"
+            (click)="seleccionarLeccion(leccion)"
+            routerLink="home/lecciones/leccion.id"
+          >
+            <h3>{{ leccion.nombre }}</h3>
+            <p>{{ leccion.descripcion }}</p>
+          </button>
+        </div>
+        <ng-template #desbloqueados>
+          <button
+            class="leccion-btn"
+            [class.disabled]="true"
+            [disabled]="true"
+            (click)="seleccionarLeccion(leccion)"
+            routerLink="home/lecciones/leccion.id"
+          >
+            <h3>{{ leccion.nombre }}</h3>
+            <p>{{ leccion.descripcion }}</p>
+          </button>
+        </ng-template>
       </ng-template>
   </div>
 </ng-container>
