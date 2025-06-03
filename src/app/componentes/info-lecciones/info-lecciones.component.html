@@ -1,4 +1,10 @@
-<div *ngIf="contenidoLeccion">
-  <h2>{{ contenidoLeccion.titulo }}</h2>
-  <p style="white-space: pre-line">{{ contenidoLeccion.contenido }}</p>
+<div *ngIf="leccionSeleccionada; else noEncontrado">
+  <h2>{{ leccionSeleccionada.titulo }}</h2>
+  <p>{{ leccionSeleccionada.contenido }}</p>
+
+  <button (click)="empezarLeccion()">Empezar Lección</button>
 </div>
+
+<ng-template #noEncontrado>
+  <p>Lección no encontrada. Por favor, seleccione una lección válida.</p>
+</ng-template>

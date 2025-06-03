@@ -7,6 +7,7 @@ import { shareReplay } from 'rxjs';
 import { IPreguntas } from '../interfaces/preguntas';
 import { ILecciones } from '../interfaces/lecciones';
 import { IProgreso } from '../interfaces/progresoUsuario';
+import { IFundamentos } from '../interfaces/fundamentos';
 
 @Injectable({
   providedIn: 'root',
@@ -18,13 +19,17 @@ export class ServicioService {
     return this.http.get<ICursos[]>('sources/cursos.json');
   }
 
-getAllLecciones(nivel: any): Observable<ILecciones[]> {
-  return this.http
-    .get<ILecciones[]>(environment.apiUrl + '/Lecciones/GetAll', {
-      params: { id: nivel.toString() },
-    })
-    .pipe(shareReplay());
-}
+  public getFundamentos(): Observable<IFundamentos[]> {
+    return this.http.get<IFundamentos[]>('sources/fundamentos_py.json');
+  }
+
+  getAllLecciones(nivel: any): Observable<ILecciones[]> {
+    return this.http
+      .get<ILecciones[]>(environment.apiUrl + '/Lecciones/GetAll', {
+        params: { id: nivel.toString() },
+      })
+      .pipe(shareReplay());
+  }
 
   getNivel(nombreCurso: string) {
     return this.http
@@ -49,22 +54,27 @@ getAllLecciones(nivel: any): Observable<ILecciones[]> {
     );
   }
 
-  addUsuarioCurso(idUsu:number, idCurso:number){
+  addUsuarioCurso(idUsu: number, idCurso: number) {
     const body = {
       usuario_id: idUsu,
-      curso_id: idCurso
+      curso_id: idCurso,
     };
-    console.log(body)
-    return this.http
-      .post(environment.apiUrl + '/UsuarioProgreso/addUsuarioProgreso', body);
+    console.log(body);
+    return this.http.post(
+      environment.apiUrl + '/UsuarioProgreso/addUsuarioProgreso',
+      body
+    );
   }
 
-    getUsuarioProgreso(idUsu:number, idCurso:number): Observable<IProgreso>{
+  getUsuarioProgreso(idUsu: number, idCurso: number): Observable<IProgreso> {
     const body = {
       usuario_id: idUsu,
-      curso_id: idCurso
+      curso_id: idCurso,
     };
-    console.log(body)
-    return this.http.post<IProgreso>(environment.apiUrl + '/UsuarioProgreso/getUsuarioProgreso', body);
-    }
+    console.log(body);
+    return this.http.post<IProgreso>(
+      environment.apiUrl + '/UsuarioProgreso/getUsuarioProgreso',
+      body
+    );
+  }
 }

@@ -1,58 +1,56 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from 'express';
+import { ServicioService } from '../../servicio/servicio.service';
+import { IFundamentos } from '../../interfaces/fundamentos';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-info-lecciones',
   standalone: false,
-
   templateUrl: './info-lecciones.component.html',
-  styleUrl: './info-lecciones.component.css',
+  styleUrls: ['./info-lecciones.component.css'],
 })
 export class InfoLeccionesComponent implements OnInit {
-  leccionId: number | null = null;
-  contenidoLeccion: any = null;
+  fundamentos: IFundamentos[] = [];
+  leccionSeleccionada?: IFundamentos;
 
-  lecciones = [
-    {
-      id: 1,
-      titulo: 'Variables y Tipos de Datos',
-      contenido: '... contenido extenso para la lección 1 ...',
-    },
-    {
-      id: 2,
-      titulo: 'Operadores',
-      contenido: '... contenido extenso para la lección 2 ...',
-    },
-    {
-      id: 3,
-      titulo: 'Entrada y Salida de Datos',
-      contenido: '... contenido extenso para la lección 3 ...',
-    },
-    {
-      id: 4,
-      titulo: 'Comentarios y Buenas Prácticas',
-      contenido: '... contenido extenso para la lección 4 ...',
-    },
-  ];
+  leccionIdParam: string = '';
+  nivelIdParam: string = '';
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private data: ServicioService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe((params) => {
-      const idParam = params.get('id');
-      this.leccionId = idParam ? +idParam : null;
+    this.data.getFundamentos().subscribe((fundamentos) => {
+      this.fundamentos = fundamentos;
 
-      if (this.leccionId) {
-        this.contenidoLeccion = this.lecciones.find(
-          (l) => l.id === this.leccionId
-        );
-      } else {
-        this.contenidoLeccion = {
-          titulo: 'Lección no encontrada',
-          contenido: 'Selecciona una lección válida.',
-        };
-      }
+      this.route.paramMap.subscribe((params) => {
+        this.leccionIdParam = params.get('id') || '';
+        const nombreParam = params.get('nombre') || '';
+        this.nivelIdParam = params.get('nivel_id') || '';
+
+        const id = Number(this.leccionIdParam);
+
+        this.leccionSeleccionada = this.fundamentos.find((f) => {
+          const nombreLimpio = f.titulo
+            .replace(/\s+/g, '-')
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '');
+          return f.id === id && nombreLimpio === nombreParam;
+        });
+      });
     });
+  }
+
+  empezarLeccion() {
+    if (this.leccionSeleccionada) {
+      this.router.navigate([
+        '/home/preguntas',
+        this.leccionIdParam,
+        this.nivelIdParam,
+      ]);
+    }
   }
 }

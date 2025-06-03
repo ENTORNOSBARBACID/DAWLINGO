@@ -16,34 +16,48 @@ import { IProgreso } from '../../interfaces/progresoUsuario';
 })
 export class LeccionesComponent {
   lecciones: ILecciones[] = [];
-  usu?:IProgreso;
-  id:number=0;
-  idUsu:number=0;
+  usu?: IProgreso;
+  id: number = 0;
+  idUsu: number = 0;
 
-  constructor(private route: Router, private data: ServicioService, private activatedRouter: ActivatedRoute, private login: LoginService) {
-      this.activatedRouter.paramMap.subscribe((params: ParamMap) => {
+  constructor(
+    private route: Router,
+    private data: ServicioService,
+    private activatedRouter: ActivatedRoute,
+    private login: LoginService
+  ) {
+    this.activatedRouter.paramMap.subscribe((params: ParamMap) => {
       const idParam = params.get('id') || '';
       this.id = idParam ? Number(idParam) : 0;
     });
 
-    this.idUsu= this.login.retornarId();
-
+    this.idUsu = this.login.retornarId();
   }
-  ngOnInit(){
-      this.data.getAllLecciones(this.id).subscribe((a) => {
+  ngOnInit() {
+    this.data.getAllLecciones(this.id).subscribe((a) => {
       a.forEach((e) => {
         this.lecciones.push(e);
       });
     });
 
-    this.data.getUsuarioProgreso(this.idUsu, this.id).subscribe((a) =>{
-      this.usu=a
-      console.log(this.usu);
+    this.data.getUsuarioProgreso(this.idUsu, this.id).subscribe((a) => {
+      this.usu = a;
+      console.log('aaaaaaaaa', this.usu);
     });
-    
   }
   seleccionarLeccion(leccion: any) {
     console.log('Lección seleccionada:', leccion);
-    this.route.navigate(['home/info-lecciones', leccion.id]);
+    const nombreLimpio = leccion.nombre
+      .replace(/\s+/g, '-')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+
+    // Usa las propiedades correctas del objeto lección
+    this.route.navigate([
+      '/home/info-lecciones',
+      leccion.id, // Cambiado de leccion.leccion_id a leccion.id
+      leccion.nivelId, // Cambiado de leccion.nivel_id a leccion.nivelId
+      nombreLimpio,
+    ]);
   }
 }
