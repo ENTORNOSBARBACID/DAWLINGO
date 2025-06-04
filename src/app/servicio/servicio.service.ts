@@ -104,4 +104,12 @@ export class ServicioService {
       body
     );
   }
+
+    getUsuarioProgresoSinCurso(idUsu: number): Observable<IProgreso[]> {
+    return this.http
+      .get<IProgreso[]>(environment.apiUrl + '/UsuarioProgreso/getUsuarioProgresoSinCurso', {
+        params: { id: idUsu.toString() },
+      })
+      .pipe(shareReplay());
+  }
 }

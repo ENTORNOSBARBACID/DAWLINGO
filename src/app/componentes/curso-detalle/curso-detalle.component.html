@@ -11,7 +11,12 @@
       <p><u>Profesor que imparte el curso:</u> {{ c.profesor }}</p>
       <p><u>Dificultad:</u> {{ c.dificultad }}</p>
       <p><u>Niveles:</u> {{ c.niveles }}</p>
+      <div *ngIf="c.id != usu?.curso_id; else boton">
       <button (click)="inscribirse(c)">Apuntarme al curso</button>
+      </div>
+      <ng-template #boton>
+        <button (click)="inscribirse(c)">Renaudar Curso</button>
+      </ng-template>
     </div>
   </div>
 </div>
@@ -26,7 +31,7 @@
       <u>{{ id }}</u>
     </h3>
   </div>
-  <div *ngIf="id < 8; else vacio">
+  <div *ngIf="id < cursos.length; else vacio">
     <a routerLink="/home/cursos/detalles/{{ id + 1 }}"
       ><h3>Siguiente curso ></h3></a
     >

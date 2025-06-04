@@ -42,7 +42,7 @@ export class LeccionesComponent {
       });
       console.log(this.lecciones)
       this.getUsuPro(this.lecciones[0].curso_id)
-      this.idNivel=this.lecciones[0].nivelId
+      this.idNivel=this.lecciones[0].curso_id
     });
     
   }
@@ -65,7 +65,7 @@ subirNivel(idUsu:number, idCurso:number){
         console.error("Error al updatear:", err);
       }
     });
-    alert('Has completado todas las lecciones del nivel'+idCurso+'!');
+    alert('Has completado todas las lecciones del nivel!');
     }
   seleccionarLeccion(leccion: any) {
     console.log('Lección seleccionada:', leccion);

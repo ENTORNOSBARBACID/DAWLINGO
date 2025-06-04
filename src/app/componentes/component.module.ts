@@ -12,6 +12,7 @@ import { CursoNivelesComponent } from './curso-niveles/curso-niveles.component';
 import { PreguntasComponent } from './preguntas/preguntas.component';
 import { FormsModule } from '@angular/forms';
 import { InfoLeccionesComponent } from './info-lecciones/info-lecciones.component';
+import { MisCursosComponent } from './mis-cursos/mis-cursos.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { InfoLeccionesComponent } from './info-lecciones/info-lecciones.componen
     CursoNivelesComponent,
     PreguntasComponent,
     InfoLeccionesComponent,
+    MisCursosComponent
   ],
   imports: [
     CommonModule,
@@ -42,6 +44,7 @@ import { InfoLeccionesComponent } from './info-lecciones/info-lecciones.componen
     CursoNivelesComponent,
     PreguntasComponent,
     InfoLeccionesComponent,
+    MisCursosComponent
   ],
 })
 export class ComponentModule {}

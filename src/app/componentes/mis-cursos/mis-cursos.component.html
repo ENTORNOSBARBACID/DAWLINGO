@@ -1,0 +1,16 @@
+<h2>Nuestros cursos...</h2>
+        <div *ngIf="cursos.length>0; else apuntate" class="content">
+            <div *ngFor="let item of cursos" class="course-card">
+                <img src="{{item.imagen}}" alt="Curso" class="course-image" />
+                <div class="course-content">
+                <h2 class="course-title">{{item.nombre}}</h2>
+                <p class="course-description">{{item.descripcion}}</p>
+                <p class="course-description">Dificultad: {{item.dificultad}}</p>
+                <a routerLink="/home/cursos/detalles/{{item.id}}"><button class="course-button" >Ver mas</button></a>
+            </div>
+        </div>
+        </div>
+        <ng-template #apuntate>
+            <h1>No estas apuntado a ningun curso...</h1>
+        </ng-template>
+<h3>Más cursos proximamente!</h3>

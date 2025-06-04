@@ -4,6 +4,7 @@ import { ServicioService } from '../../servicio/servicio.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Router } from '@angular/router';
 import { LoginService } from '../../servicio/login.service';
+import { IProgreso } from '../../interfaces/progresoUsuario';
 
 @Component({
   selector: 'app-curso-detalle',
@@ -15,6 +16,7 @@ export class CursoDetalleComponent {
   cursos: ICursos[] = [];
   id: number = 0;
   idUsu: number=0;
+  usu?:IProgreso
   constructor(
     private data: ServicioService,
     private router: ActivatedRoute,
@@ -28,16 +30,25 @@ export class CursoDetalleComponent {
     });
   }
   ngOnInit() {
-    this.getId()
+    
     this.router.paramMap.subscribe((params: ParamMap) => {
       const idParam = params.get('id') || '';
       this.id = idParam ? Number(idParam) : 0;
+      this.getId()
     });
     
   }
   getId(){
     this.idUsu=this.login.retornarId();
-    console.log("id: "+this.idUsu)
+    this.getUsuPro(this.id)
+  }
+
+  getUsuPro(idCurso: number){
+    
+    this.data.getUsuarioProgreso(this.idUsu, idCurso).subscribe((a) => {
+      this.usu = a;
+      console.log('usuario: ', this.usu);
+    });
   }
 
   inscribirse(curso: ICursos) {
