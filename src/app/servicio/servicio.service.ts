@@ -66,6 +66,19 @@ export class ServicioService {
     );
   }
 
+  UpdateLeccionesUsuarioCurso(idUsu: number, idCurso: number) {
+    const body = {
+      usuario_id: idUsu,
+      curso_id: idCurso,
+    };
+    console.log("le envio al back: "+body);
+
+    return this.http.post(
+      environment.apiUrl + '/UsuarioProgreso/updateLeccionUsuarioProgreso',
+      body
+    );
+  }
+
   getUsuarioProgreso(idUsu: number, idCurso: number): Observable<IProgreso> {
     const body = {
       usuario_id: idUsu,

@@ -39,10 +39,12 @@ export class LeccionesComponent {
         this.lecciones.push(e);
       });
     });
-
+    this.getUsuPro()
+  }
+  getUsuPro(){
     this.data.getUsuarioProgreso(this.idUsu, this.id).subscribe((a) => {
       this.usu = a;
-      console.log('aaaaaaaaa', this.usu);
+      console.log('usuario: ', this.usu);
     });
   }
   seleccionarLeccion(leccion: any) {

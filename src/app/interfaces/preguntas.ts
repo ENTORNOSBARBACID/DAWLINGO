@@ -4,4 +4,5 @@ export interface IPreguntas {
   tipo: string;
   enunciado: string;
   dificultad: string;
+  nivelId: number;
 }

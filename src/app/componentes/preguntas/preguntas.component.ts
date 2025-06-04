@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { IPreguntas } from '../../interfaces/preguntas';
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
+import { LoginService } from '../../servicio/login.service';
+import { IProgreso } from '../../interfaces/progresoUsuario';
 @Component({
   selector: 'app-preguntas',
   standalone: false,
@@ -12,6 +14,7 @@ import { Inject, PLATFORM_ID } from '@angular/core';
   styleUrl: './preguntas.component.css',
 })
 export class PreguntasComponent {
+  idUsu:number=0;
   id: number = 0;
   preguntas: IPreguntas[] = [];
   nombreUsuario: string = '';
@@ -22,14 +25,19 @@ export class PreguntasComponent {
   tipo: string | undefined;
   enunciado: string | undefined; // <- Asegúrate que esté aquí
   dificultad: string | undefined;
+  usu?:IProgreso;
+
   constructor(
     private servicioService: ServicioService,
     private router: ActivatedRoute,
     private route: Router,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private login: LoginService,
+    private data: ServicioService,
   ) {
     const navigation = this.route.getCurrentNavigation();
     const state = navigation?.extras.state;
+    this.idUsu=this.login.retornarId();
 
     if (isPlatformBrowser(this.platformId)) {
       this.nombreUsuario =
@@ -37,6 +45,9 @@ export class PreguntasComponent {
     } else {
       this.nombreUsuario = state?.['usuario'] || 'Invitado';
     }
+
+    
+    console.log("id: "+this.idUsu); 
 
     console.log('USUARIO', this.nombreUsuario);
   }
@@ -49,7 +60,9 @@ export class PreguntasComponent {
       this.servicioService.getPreguntas(this.id).subscribe({
         next: (data: IPreguntas[]) => {
           this.preguntas = data;
+          console.log(this.preguntas);
           this.indice = 0;
+          this.getUsuPro(this.preguntas[0].nivelId)
           this.setPreguntaActual();
         },
         error: (err) => {
@@ -59,13 +72,31 @@ export class PreguntasComponent {
     });
   }
 
+  getUsuPro(idCurso:number){
+    this.data.getUsuarioProgreso(this.idUsu, idCurso).subscribe((a) => {
+      this.usu = a;
+      console.log('aaaaaaaaa', this.usu);
+    });
+  }
+
   setPreguntaActual() {
     if (this.indice < this.preguntas.length) {
       this.preguntaActual = this.preguntas[this.indice];
       this.respuestaUsuario = '';
     } else {
+      const leccionDes = (this.preguntaActual?.leccionId ?? 0) + 1;
+    
+      this.data.UpdateLeccionesUsuarioCurso(this.idUsu, this.preguntas[0].nivelId).subscribe({
+        next: (res: any) => {
+          console.log("Mensaje:", res.mensaje);
+        },
+      error: (err) => {
+        console.error("Error al updatear:", err);
+      }
+    });
+
       // Todas respondidas, volvemos a lecciones
-      this.route.navigate(['/home/lecciones'], {
+      this.route.navigate(['/home/lecciones/'+this.preguntaActual?.nivelId], {
         state: { usuario: this.nombreUsuario },
       });
     }
