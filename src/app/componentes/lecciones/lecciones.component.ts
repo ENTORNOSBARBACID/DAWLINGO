@@ -19,6 +19,7 @@ export class LeccionesComponent {
   usu?: IProgreso;
   id: number = 0;
   idUsu: number = 0;
+  idNivel: number = 0
 
   constructor(
     private route: Router,
@@ -34,19 +35,38 @@ export class LeccionesComponent {
     this.idUsu = this.login.retornarId();
   }
   ngOnInit() {
+    console.log('Parametro recibido:'+this.id)
     this.data.getAllLecciones(this.id).subscribe((a) => {
       a.forEach((e) => {
         this.lecciones.push(e);
       });
+      console.log(this.lecciones)
+      this.getUsuPro(this.lecciones[0].curso_id)
+      this.idNivel=this.lecciones[0].nivelId
     });
-    this.getUsuPro()
+    
   }
-  getUsuPro(){
-    this.data.getUsuarioProgreso(this.idUsu, this.id).subscribe((a) => {
+  getUsuPro(idCurso: number){
+    this.data.getUsuarioProgreso(this.idUsu, idCurso).subscribe((a) => {
       this.usu = a;
       console.log('usuario: ', this.usu);
+      if(this.usu?.leccion_id>=5)
+          this.subirNivel(this.usu.usuario_id, this.usu.curso_id)
     });
-  }
+    
+}
+subirNivel(idUsu:number, idCurso:number){
+        
+        this.data.UpdateNivelUsuarioCurso(idUsu, idCurso).subscribe({
+        next: (res: any) => {
+          console.log("Mensaje:", res.mensaje);
+        },
+      error: (err) => {
+        console.error("Error al updatear:", err);
+      }
+    });
+    alert('Has completado todas las lecciones del nivel'+idCurso+'!');
+    }
   seleccionarLeccion(leccion: any) {
     console.log('Lección seleccionada:', leccion);
     const nombreLimpio = leccion.nombre
@@ -60,6 +80,12 @@ export class LeccionesComponent {
       leccion.id, // Cambiado de leccion.leccion_id a leccion.id
       leccion.nivelId, // Cambiado de leccion.nivel_id a leccion.nivelId
       nombreLimpio,
+    ]);
+  }
+  atras(){
+    console.log("Id del nivel: "+this.idNivel)
+       this.route.navigate([
+      '/home/curso-niveles/'+this.idNivel
     ]);
   }
 }

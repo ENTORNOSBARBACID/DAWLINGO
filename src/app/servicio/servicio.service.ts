@@ -24,6 +24,7 @@ export class ServicioService {
   }
 
   getAllLecciones(nivel: any): Observable<ILecciones[]> {
+    console.log('Nivel: '+nivel)
     return this.http
       .get<ILecciones[]>(environment.apiUrl + '/Lecciones/GetAll', {
         params: { id: nivel.toString() },
@@ -31,10 +32,10 @@ export class ServicioService {
       .pipe(shareReplay());
   }
 
-  getNivel(nombreCurso: string) {
+  getNivel(id:number) {
     return this.http
       .get(environment.apiUrl + '/Niveles/Niveles', {
-        params: { nombreCurso },
+        params: { id},
       })
       .pipe(shareReplay());
   }
@@ -75,6 +76,19 @@ export class ServicioService {
 
     return this.http.post(
       environment.apiUrl + '/UsuarioProgreso/updateLeccionUsuarioProgreso',
+      body
+    );
+  }
+
+    UpdateNivelUsuarioCurso(idUsu: number, idCurso: number) {
+    const body = {
+      usuario_id: idUsu,
+      curso_id: idCurso,
+    };
+    console.log("le envio al back: "+body);
+
+    return this.http.post(
+      environment.apiUrl + '/UsuarioProgreso/updateNivelUsuarioProgreso',
       body
     );
   }

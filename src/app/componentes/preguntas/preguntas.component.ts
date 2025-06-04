@@ -85,15 +85,18 @@ export class PreguntasComponent {
       this.respuestaUsuario = '';
     } else {
       const leccionDes = (this.preguntaActual?.leccionId ?? 0) + 1;
-    
-      this.data.UpdateLeccionesUsuarioCurso(this.idUsu, this.preguntas[0].nivelId).subscribe({
-        next: (res: any) => {
-          console.log("Mensaje:", res.mensaje);
-        },
-      error: (err) => {
-        console.error("Error al updatear:", err);
-      }
-    });
+      if(this.usu)
+        if(this.usu.nivel_id==this.preguntas[0].nivelId)
+          if(this.usu.leccion_id<=4){
+              this.data.UpdateLeccionesUsuarioCurso(this.idUsu, this.preguntas[0].nivelId).subscribe({
+                  next: (res: any) => {
+                    console.log("Mensaje:", res.mensaje);
+                  },
+                error: (err) => {
+                  console.error("Error al updatear:", err);
+                }
+              });
+          }
 
       // Todas respondidas, volvemos a lecciones
       this.route.navigate(['/home/lecciones/'+this.preguntaActual?.nivelId], {

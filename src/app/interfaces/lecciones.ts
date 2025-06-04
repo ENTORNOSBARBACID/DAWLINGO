@@ -4,4 +4,5 @@ export interface ILecciones {
   nombre: string;
   descripcion: string;
   orden: number;
+  curso_id:number
 }

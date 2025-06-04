@@ -44,7 +44,7 @@ export class CursoDetalleComponent {
     this.data.addUsuarioCurso(this.idUsu, curso.id).subscribe({
     next: (res: any) => {
       console.log("Mensaje:", res.mensaje);
-      this.route.navigate(['/home/curso-niveles', curso.nombre]);
+      this.route.navigate(['/home/curso-niveles', curso.id]);
     },
   error: (err) => {
     console.error("Error al inscribirse:", err);

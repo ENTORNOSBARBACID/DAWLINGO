@@ -6,7 +6,6 @@
             [class.disabled]="false"
             [disabled]="false"
             (click)="seleccionarLeccion(leccion)"
-            routerLink="home/lecciones/leccion.id"
           >
             <h3>{{ leccion.nombre }}</h3>
             <p>{{ leccion.descripcion }}</p>
@@ -19,7 +18,6 @@
             [class.disabled]="false"
             [disabled]="false"
             (click)="seleccionarLeccion(leccion)"
-            routerLink="home/lecciones/leccion.id"
           >
             <h3>{{ leccion.nombre }}</h3>
             <p>{{ leccion.descripcion }}</p>
@@ -31,7 +29,6 @@
             [class.disabled]="true"
             [disabled]="true"
             (click)="seleccionarLeccion(leccion)"
-            routerLink="home/lecciones/leccion.id"
           >
             <h3>{{ leccion.nombre }}</h3>
             <p>{{ leccion.descripcion }}</p>
@@ -43,3 +40,4 @@
 <ng-template #noLecciones>
   <p>No se encontraron lecciones para este nivel.</p>
 </ng-template>
+  <button (click)="atras()">Volver a los niveles</button>

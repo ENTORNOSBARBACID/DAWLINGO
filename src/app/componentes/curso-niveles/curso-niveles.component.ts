@@ -12,7 +12,7 @@ import { INiveles } from '../../interfaces/niveles';
   styleUrl: './curso-niveles.component.css',
 })
 export class CursoNivelesComponent {
-  cursoNombre: string = '';
+  parametro: number = 0;
   niveles: INiveles[] = [];
   nombreUsuario: string = '';
   usu?:IProgreso;
@@ -36,11 +36,11 @@ export class CursoNivelesComponent {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.cursoNombre = params.get('nombre') || '';
-      console.log('Curso recibido:', this.cursoNombre);
+      this.parametro = parseInt(params.get('id') || '0', 10);
+      console.log('Curso recibido:', this.parametro);
 
-      if (this.cursoNombre) {
-        this.leccionesService.getNivel(this.cursoNombre).subscribe({
+      if (this.parametro) {
+        this.leccionesService.getNivel(this.parametro).subscribe({
           next: (data: any) => {
             this.niveles = data;
             this.getUsuPro(this.niveles[0].cursoId)
