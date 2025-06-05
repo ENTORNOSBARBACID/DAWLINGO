@@ -1,38 +1,79 @@
-.imagenes{
-    width: 200px;
-    height: 200px;
+.imagenes {
+  width: 200px;
+  height: 200px;
+  object-fit: contain; /* Esta es la propiedad clave */
 }
-.info{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+
+.info {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
 }
-.navegacion{
-    display: flex;
-    justify-content: space-around;
+
+.navegacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 40px;
 }
-.navegacion div{
-    margin:60px
+
+.navegacion button {
+  background-color: #028bad;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 5px 15px rgba(2, 139, 173, 0.4);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
-button{
-    background-color: #028bad;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-    
+
+.navegacion button:disabled,
+.navegacion button[disabled] {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+  box-shadow: none;
 }
-#contenido{
-    width: 30%;
-    
+
+.navegacion button:hover:not(:disabled) {
+  background-color: #026c89;
+  transform: translateY(-2px);
 }
-#contenido p{
-    margin: 40px 40px 40px 0px
+
+button.inscribirse {
+  background-color: #028bad;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(2, 139, 173, 0.5);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
-#contenido u{
-    color: #028bad
+
+button.inscribirse:hover {
+  background-color: #026c89;
+  box-shadow: 0 6px 18px rgba(2, 139, 173, 0.7);
+}
+
+#contenido {
+  width: 35%;
+}
+
+#contenido p {
+  margin: 30px 40px 30px 0;
+}
+
+#contenido u {
+  color: #028bad;
 }

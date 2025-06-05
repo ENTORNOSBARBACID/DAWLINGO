@@ -1,17 +1,104 @@
-  .main {
-    margin-top:30px;
-    background: linear-gradient(120deg, #36aff5ce, #005e6e);
-    color: black;
-    text-align: center;
-    padding: 8rem 2rem;
-    border-radius: 20px;
-    margin-bottom: 50px;
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: white; /* Fondo blanco */
+  padding: 40px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  width: 800px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08); /* Sombra más suave */
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e2e8f0; /* Borde sutil */
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px; /* Más delgado */
+  height: 100%;
+  background: #028bad; /* Solo azul */
+}
+
+.icono {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 30px;
+}
+
+h2 {
+  text-align: center;
+  color: #2d3748;
+  margin-bottom: 40px;
+  font-size: 28px;
+  font-weight: 600;
+  position: relative;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: #028bad; /* Azul sólido */
+  border-radius: 3px;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.label {
+  color: #4a5568;
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0;
+}
+
+.value {
+  border: 1px solid #e2e8f0; /* Borde sutil */
+  background: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #2d3748;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.value:focus {
+  outline: none;
+  border-color: #028bad; /* Azul al enfocar */
+  box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.2);
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    padding: 30px 20px;
   }
-  .value{
-    height: 2.5em;
-    border-radius: 10px;
+
+  .info {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
-  img{
-    height: 100px;
-    width: 100px;
-  }
+}

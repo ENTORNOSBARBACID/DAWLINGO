@@ -12,34 +12,39 @@
       <p><u>Dificultad:</u> {{ c.dificultad }}</p>
       <p><u>Niveles:</u> {{ c.niveles }}</p>
       <div *ngIf="c.id != usu?.curso_id; else boton">
-      <button (click)="inscribirse(c)">Apuntarme al curso</button>
+        <button class="inscribirse" (click)="inscribirse(c)">
+          Empezar Curso
+        </button>
       </div>
       <ng-template #boton>
-        <button (click)="inscribirse(c)">Renaudar Curso</button>
+        <button class="inscribirse" (click)="inscribirse(c)">
+          Reanudar Curso
+        </button>
       </ng-template>
     </div>
   </div>
 </div>
+
 <div class="navegacion">
-  <div *ngIf="id > 1; else vacio">
-    <a routerLink="/home/cursos/detalles/{{ id - 1 }}"
-      ><h3>< Anterior Curso</h3></a
-    >
-  </div>
+  <button
+    [disabled]="id <= 1"
+    routerLink="/home/cursos/detalles/{{ id - 1 }}"
+    title="Curso Anterior"
+  >
+    ← Anterior
+  </button>
+
   <div>
     <h3>
       <u>{{ id }}</u>
     </h3>
   </div>
-  <div *ngIf="id < cursos.length; else vacio">
-    <a routerLink="/home/cursos/detalles/{{ id + 1 }}"
-      ><h3>Siguiente curso ></h3></a
-    >
-  </div>
 
-  <ng-template #vacio>
-    <div>
-      <h3>&nbsp;</h3>
-    </div>
-  </ng-template>
+  <button
+    [disabled]="id >= cursos.length"
+    routerLink="/home/cursos/detalles/{{ id + 1 }}"
+    title="Siguiente Curso"
+  >
+    Siguiente →
+  </button>
 </div>

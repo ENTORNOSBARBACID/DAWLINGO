@@ -4,16 +4,18 @@ import { Router, RouterLink } from '@angular/router';
 import { ComponentModule } from '../componentes/component.module';
 import { LoginService } from '../servicio/login.service';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [EstaticosModule, ComponentModule, FormsModule],
+  imports: [EstaticosModule, ComponentModule, FormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
   usuario: string = '';
   password: string = '';
+  loginError: boolean = false; // <- NUEVO
 
   constructor(private login: LoginService, private router: Router) {}
 
@@ -21,18 +23,23 @@ export class LoginComponent {
     this.login.login(this.usuario, this.password).subscribe({
       next: (data: any) => {
         console.log('DATOS', data);
-        if (data.type === "Admin") {
+        if (data.type === 'Admin') {
           sessionStorage.setItem('usuario', data.nombre);
           this.guardarId(data.id);
+          this.loginError = false; // Resetea en caso de éxito
         } else {
-          alert('Usuario o contraseña incorrectos');
+          this.loginError = true;
         }
       },
+      error: (err) => {
+        console.error('Login error', err);
+        this.loginError = true;
+      },
     });
-    
   }
-  guardarId(data:number){
-  this.login.guardarId(data);
-  this.router.navigate(['/home']);
+
+  guardarId(data: number) {
+    this.login.guardarId(data);
+    this.router.navigate(['/home']);
   }
 }

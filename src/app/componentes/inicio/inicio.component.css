@@ -1,76 +1,127 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  line-height: 1.6;
+  background-color: #f4f8fb;
+  color: #333;
+}
 
-  
-  body {
-    line-height: 1.6;
-    color: #333;
-  }
-  
-  
-  .hero {
-    margin-top:1rem;
-    background: linear-gradient(120deg, #028bad, #21cbf3);
-    color: #fff;
-    text-align: center;
-    padding: 8rem 2rem;
-    border-radius: 20px;
-  }
-  
-  .hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .cta-button {
-    display: inline-block;
-    background: #fff;
-    color: #028bad;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    margin-top: 1rem;
-    font-weight: bold;
-    text-decoration: none;
-    transition: background 0.3s;
-  }
-  
-  .cta-button:hover {
-    background: #e3f2fd;
-  }
-  
-  .cursos {
-    padding: 3rem 2rem;
-    text-align: center;
-  }
-  
-  .cursos h2 {
-    margin-bottom: 2rem;
-    font-size: 2rem;
-  }
-  
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-  }
-  
-  .card {
-    background: #fff;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    width: 250px;
-    transition: transform 0.3s;
-  }
-  
-  .card:hover {
-    transform: translateY(-8px);
-  }
-  
-  footer {
-    background: #212121;
-    color: #fff;
-    text-align: center;
-    padding: 1rem 2rem;
-    margin-top: 3rem;
-  }
-  
+/* Bienvenida */
+.bienvenida {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #028bad;
+  font-weight: bold; /* Aquí está la negrita */
+}
+
+/* Hero principal */
+.hero {
+  margin-top: 2rem;
+  background: linear-gradient(120deg, #028bad, #21cbf3);
+  color: #fff;
+  text-align: center;
+  padding: 6rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero .marca {
+  font-weight: bold;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta-button {
+  display: inline-block;
+  background: #ffffff;
+  color: #028bad;
+  padding: 0.9rem 2rem;
+  border-radius: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button:hover {
+  background: #e0f7fa;
+  transform: translateY(-3px);
+}
+
+/* Cursos destacados */
+.cursos {
+  padding: 5rem 4rem;
+  text-align: center;
+  background-color: #fff;
+  margin-top: 4rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4rem; /* 👈 Esto separa del footer */
+}
+
+.cursos h2 {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #028bad;
+}
+
+/* Grid con tarjetas amplias */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  padding: 0 2rem;
+}
+
+/* Tarjeta individual */
+.card {
+  background: #ffffff;
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+  margin-bottom: 1rem;
+  color: #028bad;
+  font-size: 1.4rem;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #444;
+}
+
+/* Footer */
+footer {
+  background: #212121;
+  color: #fff;
+  text-align: center;
+  padding: 1.5rem 2rem;
+  font-size: 0.9rem;
+  margin-top: 4rem;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}

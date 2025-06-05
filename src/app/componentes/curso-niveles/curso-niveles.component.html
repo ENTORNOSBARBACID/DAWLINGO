@@ -1,31 +1,37 @@
-<div style="display: flex; justify-content: space-between; align-items: center">
-  <h2>{{ nombreUsuario }}</h2>
-</div>
-<div *ngIf="usu && niveles.length > 0; else cargando">
-  <div *ngFor="let nivel of niveles">
-    <div *ngIf="(usu.nivel_id ?? 0) >= (nivel.id ?? 0); else desbloqueados">
+<div class="contenedor-principal">
+  <h5 class="intro-texto">
+    ¡Hola, {{ nombreUsuario }}! Aquí puedes ver los niveles que has desbloqueado
+    y los que aún están bloqueados. Haz clic en un nivel disponible para
+    comenzar a jugar y avanzar.
+  </h5>
+
+  <section
+    *ngIf="usu && niveles.length > 0; else cargando"
+    class="niveles-container"
+  >
+    <div *ngFor="let nivel of niveles" class="nivel-item">
       <button
         class="nivel-btn"
-        [class.disabled]="false"
-        [disabled]="false"
+        [class.disabled]="(usu.nivel_id ?? 0) < (nivel.id ?? 0)"
+        [disabled]="(usu.nivel_id ?? 0) < (nivel.id ?? 0)"
         (click)="seleccionarNivel(nivel)"
       >
-        {{ nivel.numeroNivel }}. {{ nivel.nombre }}
+        <div class="nivel-texto">
+          <span class="nivel-numero">{{ nivel.numeroNivel }}.</span>
+          {{ nivel.nombre }}
+        </div>
+        <span class="icon">
+          <ng-container
+            *ngIf="(usu.nivel_id ?? 0) >= (nivel.id ?? 0); else bloqueadoIcono"
+          >
+          </ng-container>
+          <ng-template #bloqueadoIcono> </ng-template>
+        </span>
       </button>
     </div>
-      <ng-template #desbloqueados>
-        <button
-          class="nivel-btn"
-          [class.disabled]="true"
-          [disabled]="true"
-          (click)="seleccionarNivel(nivel)"
-        >
-          {{ nivel.numeroNivel }}. {{ nivel.nombre }}
-        </button>
-      </ng-template>
-  </div>  
-</div>  
+  </section>
 
-<ng-template #cargando>
-  <p>Cargando niveles...</p>
-</ng-template>
+  <ng-template #cargando>
+    <p class="cargando-texto">Cargando niveles...</p>
+  </ng-template>
+</div>
