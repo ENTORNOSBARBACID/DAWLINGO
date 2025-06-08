@@ -12,6 +12,11 @@ import { Router } from '@angular/router';
 export class MiCuentaComponent {
 usu: IUsuario={} as IUsuario;
 nombreUsuario: string = '';
+nombre: string="";
+contrasena:string="";
+email:string="";
+rol:number=1;
+correcto:boolean=true;
 constructor(private login: LoginService, private router: Router){
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state;
@@ -21,17 +26,34 @@ constructor(private login: LoginService, private router: Router){
       console.log('USUARIO', this.nombreUsuario);
 }
   ngOnInit(): void {
-    this.info(); // 👈 se llama automáticamente al cargar el componente
+    this.info();
   }
    info(){
     this.login.info(this.nombreUsuario).subscribe({
       next: (data: any) => {
         this.usu=data.type;
         console.log(this.usu);
+        this.email=this.usu.email;
+        this.contrasena=this.usu.contrasena;
       }
     })
    }
+Aceptar () {
+      this.nombre=this.usu.nombre;
+      this.contrasena=this.usu.contrasena;
 
+       this.login.edit(this.usu.nombre, this.contrasena, this.usu.email)
+      .subscribe({
+        next: (respuesta) => {
+          console.log('Edicion exitosa:', respuesta);
+          this.correcto = true;
+        },
+        error: (error) => {
+          console.error('Error al editar:', error);
+          this.correcto = false; 
+        }
+      });
+}
 }
 /* constructor(private login: LoginService, private router: Router) {}
 

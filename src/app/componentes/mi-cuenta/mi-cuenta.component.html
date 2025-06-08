@@ -1,21 +1,22 @@
 <div class="main">
   <div class="container">
     <img src="/images/logo1.png" class="icono" alt="Logo de usuario" />
-    <h2>Información de la Cuenta de {{ usu.nombre || "Usuario" }}</h2>
+    <h2>Información de la Cuenta de {{ nombre || "Usuario" }}</h2>
+    <h3>Los elementos con ( * ) son editables</h3>
 
     <div class="info">
       <p class="label">Nombre:</p>
-      <input type="text" class="value" [value]="usu.nombre" readonly />
+      <input type="text" class="value" [value]="usu.nombre" readonly/>
     </div>
 
     <div class="info">
-      <p class="label">Contraseña:</p>
-      <input type="password" class="value" [value]="usu.contrasena" readonly />
+      <p class="label">( * ) Contraseña:</p>
+      <input type="password" class="value" [(ngModel)]="usu.contrasena"/>
     </div>
 
     <div class="info">
-      <p class="label">Correo:</p>
-      <input type="email" class="value" [value]="usu.email" readonly />
+      <p class="label">( * ) Correo:</p>
+      <input type="email" class="value" [(ngModel)]="usu.email" />
     </div>
 
     <div class="info">
@@ -24,13 +25,17 @@
     </div>
 
     <div class="info">
-      <p class="label">Rol:</p>
-      <input type="text" class="value" [value]="usu.rol" readonly />
+      <p class="label"> Rol:</p>
+      <input type="text" class="value" [value]="usu.rol" readonly/>
     </div>
 
     <div class="info">
       <p class="label">Vidas:</p>
       <input type="text" class="value" [value]="usu.vidas" readonly />
     </div>
+    <div *ngIf="email != usu.email || contrasena != usu.contrasena">
+      <button (click)=Aceptar()>Aceptar Cambios</button>
+    </div>
+    
   </div>
 </div>

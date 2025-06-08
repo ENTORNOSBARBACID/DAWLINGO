@@ -13,6 +13,7 @@ import { PreguntasComponent } from './preguntas/preguntas.component';
 import { FormsModule } from '@angular/forms';
 import { InfoLeccionesComponent } from './info-lecciones/info-lecciones.component';
 import { MisCursosComponent } from './mis-cursos/mis-cursos.component';
+import { RegistrateComponent } from './registrate/registrate.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MisCursosComponent } from './mis-cursos/mis-cursos.component';
     CursoNivelesComponent,
     PreguntasComponent,
     InfoLeccionesComponent,
-    MisCursosComponent
+    MisCursosComponent,
+    RegistrateComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +46,8 @@ import { MisCursosComponent } from './mis-cursos/mis-cursos.component';
     CursoNivelesComponent,
     PreguntasComponent,
     InfoLeccionesComponent,
-    MisCursosComponent
+    MisCursosComponent,
+    RegistrateComponent
   ],
 })
 export class ComponentModule {}

@@ -10,9 +10,11 @@ import { CursoNivelesComponent } from './componentes/curso-niveles/curso-niveles
 import { PreguntasComponent } from './componentes/preguntas/preguntas.component';
 import { InfoLeccionesComponent } from './componentes/info-lecciones/info-lecciones.component';
 import { MisCursosComponent } from './componentes/mis-cursos/mis-cursos.component';
+import { RegistrateComponent } from './componentes/registrate/registrate.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'registrate', component: RegistrateComponent },
   {
     path: 'home',
     component: HomeComponent,

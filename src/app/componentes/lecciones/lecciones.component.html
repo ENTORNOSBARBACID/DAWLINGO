@@ -1,43 +1,46 @@
 <ng-container *ngIf="usu && lecciones.length > 0; else noLecciones">
-  <div *ngFor="let leccion of lecciones">
-    <div *ngIf="usu.nivel_id > leccion.nivelId; else incompleto">
-          <button
-            class="leccion-btn"
-            [class.disabled]="false"
-            [disabled]="false"
-            (click)="seleccionarLeccion(leccion)"
-          >
-            <h3>{{ leccion.nombre }}</h3>
-            <p>{{ leccion.descripcion }}</p>
-          </button>
+  <div class="lecciones-grid">
+    <div *ngFor="let leccion of lecciones">
+      <div *ngIf="usu.nivel_id > leccion.nivelId; else incompleto">
+        <button
+          class="leccion-btn completed"
+          (click)="seleccionarLeccion(leccion)"
+        >
+          <div class="status-indicator"></div>
+          <h3>{{ leccion.nombre }}</h3>
+          <p>{{ leccion.descripcion }}</p>
+        </button>
       </div>
       <ng-template #incompleto>
-        <div *ngIf="usu.leccion_id >= leccion.orden ; else desbloqueados">
+        <div *ngIf="usu.leccion_id >= leccion.orden; else desbloqueados">
           <button
-            class="leccion-btn"
-            [class.disabled]="false"
-            [disabled]="false"
+            class="leccion-btn unlocked"
             (click)="seleccionarLeccion(leccion)"
           >
+            <div class="status-indicator"></div>
             <h3>{{ leccion.nombre }}</h3>
             <p>{{ leccion.descripcion }}</p>
           </button>
         </div>
         <ng-template #desbloqueados>
           <button
-            class="leccion-btn"
-            [class.disabled]="true"
-            [disabled]="true"
-            (click)="seleccionarLeccion(leccion)"
+            class="leccion-btn disabled"
+            disabled
           >
+            <div class="status-indicator"></div>
             <h3>{{ leccion.nombre }}</h3>
             <p>{{ leccion.descripcion }}</p>
           </button>
         </ng-template>
       </ng-template>
+    </div>
   </div>
 </ng-container>
+
 <ng-template #noLecciones>
-  <p>No se encontraron lecciones para este nivel.</p>
+  <p class="no-lecciones">No se encontraron lecciones para este nivel.</p>
 </ng-template>
-  <button (click)="atras()">Volver a los niveles</button>
+
+<button class="btn-volver" (click)="atras()">
+  <i>←</i> Volver a los niveles
+</button>

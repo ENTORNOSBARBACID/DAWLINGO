@@ -20,7 +20,7 @@ export class LoginService {
       .pipe(shareReplay());
   }
 
-    info(usuario: string) {
+  info(usuario: string) {
     const body = {
       Nombre: usuario
     };
@@ -29,6 +29,36 @@ export class LoginService {
       .post(environment.apiUrl + '/Login/Info', body)
       .pipe(shareReplay());
   }
+  register(nombre: string, contrasena:string, email:string, rol:number){
+    const body = {
+      Nombre:nombre,
+      Contrasena: contrasena,
+      Email:email,
+      Rol:rol
+    };
+    console.log(body);
+    return this.http.post(
+      environment.apiUrl + '/Login/Register',
+      body
+    ).pipe(shareReplay());
+
+  }
+
+   edit(nombre: string, contrasena:string, email:string){
+    const body = {
+      Nombre:nombre,
+      Password: contrasena,
+      Email:email,
+    };
+    console.log(body);
+    return this.http.post(
+      environment.apiUrl + '/Login/Edit',
+      body
+    ).pipe(shareReplay());
+
+  }
+
+
   guardarId(id:number){
   this.id = id;
   if (typeof window !== 'undefined') {
