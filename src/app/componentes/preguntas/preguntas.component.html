@@ -1,6 +1,6 @@
-<div *ngIf="preguntaActual">
-  <h2>Pregunta {{ indice + 1 }} de {{ preguntas.length }}</h2>
-  <p>{{ preguntaActual?.enunciado }}</p>
+<div *ngIf="preguntaActual" class="pregunta-container">
+  <h2 class="titulo">Pregunta {{ indice + 1 }} de {{ preguntas.length }}</h2>
+  <p class="enunciado">{{ preguntaActual?.enunciado }}</p>
 
   <input
     type="text"
@@ -9,9 +9,11 @@
     class="respuesta-input"
   />
 
-  <button (click)="verificarRespuesta()">Enviar respuesta</button>
+  <button (click)="verificarRespuesta()" class="btn-enviar">
+    Enviar respuesta
+  </button>
 </div>
 
-<div *ngIf="!preguntaActual">
+<div *ngIf="!preguntaActual" class="loading">
   <p>Cargando pregunta...</p>
 </div>
