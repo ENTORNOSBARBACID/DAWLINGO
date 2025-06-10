@@ -8,6 +8,7 @@ import { IPreguntas } from '../interfaces/preguntas';
 import { ILecciones } from '../interfaces/lecciones';
 import { IProgreso } from '../interfaces/progresoUsuario';
 import { IFundamentos } from '../interfaces/fundamentos';
+import { IRespuestas } from '../interfaces/respuestas';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,7 @@ export class ServicioService {
   }
 
   getAllLecciones(nivel: any): Observable<ILecciones[]> {
-    console.log('Nivel: '+nivel)
+    console.log('Nivel: ' + nivel);
     return this.http
       .get<ILecciones[]>(environment.apiUrl + '/Lecciones/GetAll', {
         params: { id: nivel.toString() },
@@ -32,10 +33,10 @@ export class ServicioService {
       .pipe(shareReplay());
   }
 
-  getNivel(id:number) {
+  getNivel(id: number) {
     return this.http
       .get(environment.apiUrl + '/Niveles/Niveles', {
-        params: { id},
+        params: { id },
       })
       .pipe(shareReplay());
   }
@@ -72,7 +73,7 @@ export class ServicioService {
       usuario_id: idUsu,
       curso_id: idCurso,
     };
-    console.log("le envio al back: "+body);
+    console.log('le envio al back: ' + body);
 
     return this.http.post(
       environment.apiUrl + '/UsuarioProgreso/updateLeccionUsuarioProgreso',
@@ -80,12 +81,12 @@ export class ServicioService {
     );
   }
 
-    UpdateNivelUsuarioCurso(idUsu: number, idCurso: number) {
+  UpdateNivelUsuarioCurso(idUsu: number, idCurso: number) {
     const body = {
       usuario_id: idUsu,
       curso_id: idCurso,
     };
-    console.log("le envio al back: "+body);
+    console.log('le envio al back: ' + body);
 
     return this.http.post(
       environment.apiUrl + '/UsuarioProgreso/updateNivelUsuarioProgreso',
@@ -105,11 +106,20 @@ export class ServicioService {
     );
   }
 
-    getUsuarioProgresoSinCurso(idUsu: number): Observable<IProgreso[]> {
+  getUsuarioProgresoSinCurso(idUsu: number): Observable<IProgreso[]> {
     return this.http
-      .get<IProgreso[]>(environment.apiUrl + '/UsuarioProgreso/getUsuarioProgresoSinCurso', {
-        params: { id: idUsu.toString() },
-      })
+      .get<IProgreso[]>(
+        environment.apiUrl + '/UsuarioProgreso/getUsuarioProgresoSinCurso',
+        {
+          params: { id: idUsu.toString() },
+        }
+      )
       .pipe(shareReplay());
+  }
+
+  getRespuestas(): Observable<IRespuestas[]> {
+    return this.http.get<IRespuestas[]>(
+      environment.apiUrl + '/UsuarioProgreso/getAllRespuestas'
+    );
   }
 }

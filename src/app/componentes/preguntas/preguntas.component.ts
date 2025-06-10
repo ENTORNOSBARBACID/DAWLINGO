@@ -7,6 +7,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
 import { LoginService } from '../../servicio/login.service';
 import { IProgreso } from '../../interfaces/progresoUsuario';
+import { IRespuestas } from '../../interfaces/respuestas';
 @Component({
   selector: 'app-preguntas',
   standalone: false,
@@ -20,12 +21,15 @@ export class PreguntasComponent {
   nombreUsuario: string = '';
   respuestaUsuario: string = '';
   preguntaActual: IPreguntas | null = null;
+  respuestas: IRespuestas | null = null;
   indice: number = 0;
   leccionId: number | undefined;
   tipo: string | undefined;
   enunciado: string | undefined; // <- Asegúrate que esté aquí
   dificultad: string | undefined;
   usu?: IProgreso;
+  preguntaRespuestasMap: { [preguntaId: number]: IRespuestas[] } = {};
+  respuestaSeleccionada: IRespuestas | null = null;
 
   constructor(
     private servicioService: ServicioService,
@@ -54,11 +58,6 @@ export class PreguntasComponent {
   ngOnInit() {
     this.router.paramMap.subscribe((params: ParamMap) => {
       const leccionIdParam = params.get('leccion_id') || '';
-      const nivelIdParam = params.get('nivel_id') || '';
-
-      console.log('Lección recibida:', leccionIdParam);
-      console.log('Nivel recibido:', nivelIdParam);
-
       this.id = leccionIdParam ? Number(leccionIdParam) : 0;
 
       this.servicioService.getPreguntas(this.id).subscribe({
@@ -70,6 +69,22 @@ export class PreguntasComponent {
         },
         error: (err) => {
           console.error('Error obteniendo preguntas:', err);
+        },
+      });
+
+      this.servicioService.getRespuestas().subscribe({
+        next: (data: IRespuestas[]) => {
+          // Agrupar respuestas por pregunta
+          for (let respuesta of data) {
+            const pid = respuesta.preguntaId;
+            if (!this.preguntaRespuestasMap[pid]) {
+              this.preguntaRespuestasMap[pid] = [];
+            }
+            this.preguntaRespuestasMap[pid].push(respuesta);
+          }
+        },
+        error: (err) => {
+          console.error('Error al obtener respuestas', err);
         },
       });
     });
@@ -112,17 +127,23 @@ export class PreguntasComponent {
       });
     }
   }
+
+  seleccionarRespuesta(opcion: IRespuestas) {
+    this.respuestaSeleccionada = opcion;
+  }
+
   verificarRespuesta() {
-    if (!this.preguntaActual) return;
+    if (!this.preguntaActual || !this.respuestaSeleccionada) return;
 
     const body = {
       preguntaId: this.preguntaActual.id,
-      textoRespuesta: this.respuestaUsuario, // Cambiado de 'respuesta' a 'textoRespuesta'
+      textoRespuesta: this.respuestaSeleccionada.texto, // usando la opción seleccionada
     };
 
     this.servicioService.verificarRespuesta(body).subscribe({
       next: (esCorrecta: boolean) => {
         if (esCorrecta) {
+          this.respuestaSeleccionada = null;
           this.indice++;
           this.setPreguntaActual();
         } else {
@@ -134,5 +155,10 @@ export class PreguntasComponent {
         alert('Ocurrió un error al verificar tu respuesta.');
       },
     });
+  }
+
+  calcularPorcentaje(): number {
+    if (this.preguntas.length === 0) return 0;
+    return Math.round((this.indice / this.preguntas.length) * 100);
   }
 }

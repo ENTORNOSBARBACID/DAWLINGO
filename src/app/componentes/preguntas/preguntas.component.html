@@ -1,17 +1,31 @@
 <div *ngIf="preguntaActual" class="pregunta-container">
   <h2 class="titulo">Pregunta {{ indice + 1 }} de {{ preguntas.length }}</h2>
-  <p class="enunciado">{{ preguntaActual?.enunciado }}</p>
+  <p class="enunciado">{{ preguntaActual.enunciado }}</p>
 
-  <input
-    type="text"
-    [(ngModel)]="respuestaUsuario"
-    placeholder="Tu respuesta"
-    class="respuesta-input"
-  />
+  <div class="opciones-respuesta">
+    <button
+      *ngFor="let opcion of preguntaRespuestasMap[preguntaActual.id]"
+      (click)="seleccionarRespuesta(opcion)"
+      [ngClass]="{ seleccionada: respuestaSeleccionada?.id === opcion.id }"
+      class="opcion-btn"
+    >
+      {{ opcion.texto }}
+    </button>
+  </div>
 
-  <button (click)="verificarRespuesta()" class="btn-enviar">
+  <button
+    (click)="verificarRespuesta()"
+    [disabled]="!respuestaSeleccionada"
+    class="btn-enviar"
+  >
     Enviar respuesta
   </button>
+</div>
+<div class="barra-progreso-wrapper">
+  <p class="porcentaje-progreso">{{ calcularPorcentaje() }}% completado</p>
+  <div class="barra-progreso-container">
+    <div class="barra-progreso" [style.width.%]="calcularPorcentaje()"></div>
+  </div>
 </div>
 
 <div *ngIf="!preguntaActual" class="loading">

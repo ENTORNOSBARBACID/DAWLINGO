@@ -65,3 +65,49 @@
   margin-top: 60px;
   font-style: italic;
 }
+
+.opcion-btn {
+  margin: 5px 0;
+  padding: 10px;
+  width: 100%;
+  background-color: #f0f0f0;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.opcion-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.opcion-btn.seleccionada {
+  border-color: #007bff;
+  background-color: #cce5ff;
+}
+
+.barra-progreso-wrapper {
+  width: 100%;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.porcentaje-progreso {
+  margin: 0 0 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.barra-progreso-container {
+  width: 100%;
+  background-color: #e0e0e0;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.barra-progreso {
+  height: 100%;
+  background-color: #007bff;
+  transition: width 0.3s ease-in-out;
+}
