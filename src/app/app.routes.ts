@@ -27,8 +27,14 @@ export const routes: Routes = [
       { path: 'mi-cuenta', component: MiCuentaComponent },
       { path: 'curso-niveles/:id', component: CursoNivelesComponent },
       { path: 'lecciones/:id', component: PreguntasComponent },
-      {path: 'info-lecciones/:id/:nivel_id/:nombre',component: InfoLeccionesComponent,},
-      { path: 'preguntas/:id/:id', component: PreguntasComponent },
+      {
+        path: 'info-lecciones/:id/:nivel_id/:nombre',
+        component: InfoLeccionesComponent,
+      },
+      {
+        path: 'preguntas/:leccion_id/:nivel_id',
+        component: PreguntasComponent,
+      },
     ],
   },
 ];

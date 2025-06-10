@@ -52,9 +52,10 @@ export class InfoLeccionesComponent implements OnInit {
 
   empezarLeccion() {
     if (this.leccionSeleccionada) {
+      console.log('lecciodid', this.leccionIdParam);
       this.router.navigate([
         '/home/preguntas',
-        this.leccionIdParam,
+        this.leccionSeleccionada.id,
         this.nivelIdParam,
       ]);
     }

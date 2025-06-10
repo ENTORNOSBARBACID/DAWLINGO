@@ -14,7 +14,7 @@ import { IProgreso } from '../../interfaces/progresoUsuario';
   styleUrl: './preguntas.component.css',
 })
 export class PreguntasComponent {
-  idUsu:number=0;
+  idUsu: number = 0;
   id: number = 0;
   preguntas: IPreguntas[] = [];
   nombreUsuario: string = '';
@@ -25,7 +25,7 @@ export class PreguntasComponent {
   tipo: string | undefined;
   enunciado: string | undefined; // <- Asegúrate que esté aquí
   dificultad: string | undefined;
-  usu?:IProgreso;
+  usu?: IProgreso;
 
   constructor(
     private servicioService: ServicioService,
@@ -33,11 +33,11 @@ export class PreguntasComponent {
     private route: Router,
     @Inject(PLATFORM_ID) private platformId: Object,
     private login: LoginService,
-    private data: ServicioService,
+    private data: ServicioService
   ) {
     const navigation = this.route.getCurrentNavigation();
     const state = navigation?.extras.state;
-    this.idUsu=this.login.retornarId();
+    this.idUsu = this.login.retornarId();
 
     if (isPlatformBrowser(this.platformId)) {
       this.nombreUsuario =
@@ -46,23 +46,26 @@ export class PreguntasComponent {
       this.nombreUsuario = state?.['usuario'] || 'Invitado';
     }
 
-    
-    console.log("id: "+this.idUsu); 
+    console.log('id: ' + this.idUsu);
 
     console.log('USUARIO', this.nombreUsuario);
   }
 
   ngOnInit() {
     this.router.paramMap.subscribe((params: ParamMap) => {
-      const idParam = params.get('id') || '';
-      this.id = idParam ? Number(idParam) : 0;
+      const leccionIdParam = params.get('leccion_id') || '';
+      const nivelIdParam = params.get('nivel_id') || '';
+
+      console.log('Lección recibida:', leccionIdParam);
+      console.log('Nivel recibido:', nivelIdParam);
+
+      this.id = leccionIdParam ? Number(leccionIdParam) : 0;
 
       this.servicioService.getPreguntas(this.id).subscribe({
         next: (data: IPreguntas[]) => {
           this.preguntas = data;
-          console.log(this.preguntas);
           this.indice = 0;
-          this.getUsuPro(this.preguntas[0].nivelId)
+          this.getUsuPro(this.preguntas[0].nivelId);
           this.setPreguntaActual();
         },
         error: (err) => {
@@ -72,7 +75,7 @@ export class PreguntasComponent {
     });
   }
 
-  getUsuPro(idCurso:number){
+  getUsuPro(idCurso: number) {
     this.data.getUsuarioProgreso(this.idUsu, idCurso).subscribe((a) => {
       this.usu = a;
       console.log('aaaaaaaaa', this.usu);
@@ -85,21 +88,26 @@ export class PreguntasComponent {
       this.respuestaUsuario = '';
     } else {
       const leccionDes = (this.preguntaActual?.leccionId ?? 0) + 1;
-      if(this.usu)
-        if(this.usu.nivel_id==this.preguntas[0].nivelId)
-          if(this.usu.leccion_id<=4){
-              this.data.UpdateLeccionesUsuarioCurso(this.idUsu, this.preguntas[0].nivelId).subscribe({
-                  next: (res: any) => {
-                    console.log("Mensaje:", res.mensaje);
-                  },
+      if (this.usu)
+        if (this.usu.nivel_id == this.preguntas[0].nivelId)
+          if (this.usu.leccion_id <= 4) {
+            this.data
+              .UpdateLeccionesUsuarioCurso(
+                this.idUsu,
+                this.preguntas[0].nivelId
+              )
+              .subscribe({
+                next: (res: any) => {
+                  console.log('Mensaje:', res.mensaje);
+                },
                 error: (err) => {
-                  console.error("Error al updatear:", err);
-                }
+                  console.error('Error al updatear:', err);
+                },
               });
           }
 
       // Todas respondidas, volvemos a lecciones
-      this.route.navigate(['/home/lecciones/'+this.preguntaActual?.nivelId], {
+      this.route.navigate(['/home/lecciones/' + this.preguntaActual?.nivelId], {
         state: { usuario: this.nombreUsuario },
       });
     }
