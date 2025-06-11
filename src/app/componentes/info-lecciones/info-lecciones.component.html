@@ -1,6 +1,9 @@
 <div *ngIf="leccionSeleccionada; else noEncontrado" class="leccion-container">
   <div class="leccion-header">
-    <h2 class="leccion-titulo">{{ leccionSeleccionada.titulo }}</h2>
+    <h2 class="leccion-titulo">
+      {{ formatearTitulo(leccionSeleccionada.titulo) }}
+    </h2>
+
     <div class="leccion-meta"></div>
   </div>
 

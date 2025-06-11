@@ -34,19 +34,16 @@ export class InfoLeccionesComponent implements OnInit {
         this.leccionIdParam = params.get('id') || '';
         const nombreParam = params.get('nombre') || '';
         this.nivelIdParam = params.get('nivel_id') || '';
-
         const id = Number(this.leccionIdParam);
 
-        this.leccionSeleccionada = this.fundamentos.find((f) => {
-          const nombreLimpio = f.titulo
-            .replace(/\s+/g, '-')
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '');
-          return f.id === id && nombreLimpio === nombreParam;
-        });
+        this.leccionSeleccionada = this.fundamentos.find(
+          (f) => f.id === id && f.titulo === nombreParam
+        );
 
         if (this.leccionSeleccionada) {
           this.contenidoHTML = await marked(this.leccionSeleccionada.contenido);
+        } else {
+          this.contenidoHTML = ''; // O muestra un mensaje de "no encontrado"
         }
       });
     });
@@ -62,5 +59,8 @@ export class InfoLeccionesComponent implements OnInit {
       ]);
     }
   }
-}
 
+  formatearTitulo(titulo: string): string {
+    return titulo.replace(/-/g, ' ');
+  }
+}

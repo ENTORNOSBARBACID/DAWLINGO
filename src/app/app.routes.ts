@@ -12,6 +12,7 @@ import { InfoLeccionesComponent } from './componentes/info-lecciones/info-leccio
 import { MisCursosComponent } from './componentes/mis-cursos/mis-cursos.component';
 import { RegistrateComponent } from './componentes/registrate/registrate.component';
 import { InfoAdminComponent } from './componentes/info-admin/info-admin.component';
+import { SobreNosotrosComponent } from './componentes/sobre-nosotros/sobre-nosotros.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -27,6 +28,7 @@ export const routes: Routes = [
       { path: 'cursos/detalles/:id', component: CursoDetalleComponent },
       { path: 'lecciones/:id', component: LeccionesComponent },
       { path: 'mi-cuenta', component: MiCuentaComponent },
+      { path: 'sobre-nosotros', component: SobreNosotrosComponent },
       { path: 'curso-niveles/:id', component: CursoNivelesComponent },
       { path: 'lecciones/:id', component: PreguntasComponent },
       {

@@ -21,7 +21,7 @@ export class ServicioService {
   }
 
   public getFundamentos(): Observable<IFundamentos[]> {
-    return this.http.get<IFundamentos[]>('sources/fundamentos_py.json');
+    return this.http.get<IFundamentos[]>('sources/info-lecciones.json');
   }
 
   getAllLecciones(nivel: any): Observable<ILecciones[]> {
