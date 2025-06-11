@@ -5,4 +5,5 @@ export interface IUsuario {
   nombre: string;
   rol: number;
   vidas: number;
+  puntos:number;
 }

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../enviroments/enviroments';
-import { shareReplay } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
+import { IUsuario } from '../interfaces/usuarios';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +14,8 @@ export class LoginService {
 
   login(usuario: string, password: string) {
     const body = {
-      nombre: usuario,
-      password: password,
+      Nombre: usuario,
+      Password: password,
     };
     return this.http
       .post(environment.apiUrl + '/Login/Login', body)
@@ -58,7 +59,52 @@ export class LoginService {
     ).pipe(shareReplay());
 
   }
+  getAllUsuarios(): Observable<IUsuario[]> {
+    return this.http
+      .get<IUsuario[]>(environment.apiUrl + '/Login/GetAll');
+  }
 
+  sumarPuntos(id:number){
+    const body = {
+      id:id,
+    };
+    console.log(body);
+    return this.http.post(
+      environment.apiUrl + '/Login/sumarPuntos',
+      body
+    ).pipe(shareReplay());
+  }
+    sumarPuntosLeccion(id:number){
+    const body = {
+      id:id,
+    };
+    console.log(body);
+    return this.http.post(
+      environment.apiUrl + '/Login/sumarPuntosLeccion',
+      body
+    ).pipe(shareReplay());
+  }
+     sumarPuntosNivel(id:number){
+    const body = {
+      id:id,
+    };
+    console.log(body);
+    return this.http.post(
+      environment.apiUrl + '/Login/sumarPuntosNivel',
+      body
+    ).pipe(shareReplay());
+  }
+
+    restarPuntos(id:number){
+    const body = {
+      id:id,
+    };
+    console.log(body);
+    return this.http.post(
+      environment.apiUrl + '/Login/restarPuntos',
+      body
+    ).pipe(shareReplay());
+  }
 
   guardarId(id:number){
   this.id = id;

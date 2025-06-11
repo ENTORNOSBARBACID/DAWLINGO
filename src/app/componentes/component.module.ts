@@ -15,7 +15,7 @@ import { InfoLeccionesComponent } from './info-lecciones/info-lecciones.componen
 import { MisCursosComponent } from './mis-cursos/mis-cursos.component';
 import { RegistrateComponent } from './registrate/registrate.component';
 import { InfoAdminComponent } from './info-admin/info-admin.component';
-import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
+import { RankingComponent } from './ranking/ranking.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.componen
     MisCursosComponent,
     RegistrateComponent,
     InfoAdminComponent,
-    SobreNosotrosComponent,
+    RankingComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +53,7 @@ import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.componen
     MisCursosComponent,
     RegistrateComponent,
     InfoAdminComponent,
-    SobreNosotrosComponent,
+    RankingComponent
   ],
 })
 export class ComponentModule {}

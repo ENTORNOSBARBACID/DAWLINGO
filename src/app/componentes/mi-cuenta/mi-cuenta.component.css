@@ -106,6 +106,10 @@ button:hover {
   background: linear-gradient(135deg, #016f75 0%, #1592ff 100%);
   transform: translateY(-2px);
 }
+.correcto{
+  color:green;
+  padding: 10px;
+}
 @media (max-width: 768px) {
   .container {
     width: 100%;

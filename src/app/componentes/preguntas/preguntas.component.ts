@@ -24,6 +24,7 @@ export class PreguntasComponent {
   respuestas: IRespuestas | null = null;
   indice: number = 0;
   leccionId: number | undefined;
+  cursoId: number =0;
   tipo: string | undefined;
   enunciado: string | undefined; // <- Asegúrate que esté aquí
   dificultad: string | undefined;
@@ -50,7 +51,10 @@ export class PreguntasComponent {
       this.nombreUsuario = state?.['usuario'] || 'Invitado';
     }
 
+
     console.log('id: ' + this.idUsu);
+
+    
 
     console.log('USUARIO', this.nombreUsuario);
   }
@@ -60,11 +64,18 @@ export class PreguntasComponent {
       const leccionIdParam = params.get('leccion_id') || '';
       this.id = leccionIdParam ? Number(leccionIdParam) : 0;
 
+
+    this.router.paramMap.subscribe((params: ParamMap) => {
+      const leccionIdParam = params.get('curso_id') || '';
+      this.cursoId = leccionIdParam ? Number(leccionIdParam) : 0});
+
+      
+
       this.servicioService.getPreguntas(this.id).subscribe({
         next: (data: IPreguntas[]) => {
           this.preguntas = data;
           this.indice = 0;
-          this.getUsuPro(this.preguntas[0].nivelId);
+          this.getUsuPro();
           this.setPreguntaActual();
         },
         error: (err) => {
@@ -90,10 +101,11 @@ export class PreguntasComponent {
     });
   }
 
-  getUsuPro(idCurso: number) {
-    this.data.getUsuarioProgreso(this.idUsu, idCurso).subscribe((a) => {
+  getUsuPro() {
+    console.log('nivelid: ' + this.cursoId);
+    this.data.getUsuarioProgreso(this.idUsu, this.cursoId).subscribe((a) => {
       this.usu = a;
-      console.log('aaaaaaaaa', this.usu);
+      console.log('UsuarioProgreso', this.usu);
     });
   }
 
@@ -103,13 +115,16 @@ export class PreguntasComponent {
       this.respuestaUsuario = '';
     } else {
       const leccionDes = (this.preguntaActual?.leccionId ?? 0) + 1;
-      if (this.usu)
-        if (this.usu.nivel_id == this.preguntas[0].nivelId)
+      console.log('UsuarioProgreso', this.usu);
+       if (this.usu){
+        if (this.usu.nivel_id == this.preguntas[0].nivelId){
+          console.log("hoola")
           if (this.usu.leccion_id <= 4) {
+            console.log("nivel: "+this.cursoId)
             this.data
               .UpdateLeccionesUsuarioCurso(
                 this.idUsu,
-                this.preguntas[0].nivelId
+                this.cursoId
               )
               .subscribe({
                 next: (res: any) => {
@@ -120,8 +135,12 @@ export class PreguntasComponent {
                 },
               });
           }
+        }
+        }
 
       // Todas respondidas, volvemos a lecciones
+      
+      this.sumarPuntosLeccion();
       this.route.navigate(['/home/lecciones/' + this.preguntaActual?.nivelId], {
         state: { usuario: this.nombreUsuario },
       });
@@ -145,9 +164,11 @@ export class PreguntasComponent {
         if (esCorrecta) {
           this.respuestaSeleccionada = null;
           this.indice++;
+          this.sumarPuntos()
           this.setPreguntaActual();
         } else {
-          alert('Respuesta incorrecta. Intenta nuevamente.');
+          this.restarPuntos()
+          alert('Respuesta incorrecta, te han restado 10 puntos. Intenta nuevamente.');
         }
       },
       error: (err) => {
@@ -156,7 +177,40 @@ export class PreguntasComponent {
       },
     });
   }
+  sumarPuntos(){
+    this.login.sumarPuntos(this.idUsu)
+      .subscribe({
+        next: (respuesta) => {
+          console.log('Edicion exitosa:', respuesta);
+        },
+        error: (error) => {
+          console.error('Error al editar:', error);
+        }
+      });
+  }
+    sumarPuntosLeccion(){
+    this.login.sumarPuntosLeccion(this.idUsu)
+      .subscribe({
+        next: (respuesta) => {
+          console.log('Edicion exitosa:', respuesta);
+        },
+        error: (error) => {
+          console.error('Error al editar:', error);
+        }
+      });
+  }
 
+    restarPuntos(){
+    this.login.restarPuntos(this.idUsu)
+      .subscribe({
+        next: (respuesta) => {
+          console.log('Edicion exitosa:', respuesta);
+        },
+        error: (error) => {
+          console.error('Error al editar:', error);
+        }
+      });
+  }
   calcularPorcentaje(): number {
     if (this.preguntas.length === 0) return 0;
     return Math.round((this.indice / this.preguntas.length) * 100);

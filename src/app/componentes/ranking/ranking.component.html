@@ -1,0 +1,24 @@
+<h1>RANKING ACTUAL:</h1>
+<table class="tabla-cursos">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Puntos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of usu; let i = index">
+        <td>
+            {{ i + 1 }}
+            <span *ngIf="i === 0">🏆</span>
+            <span *ngIf="i === 1">🥈</span>
+            <span *ngIf="i === 2">🥉</span>
+        </td>
+        <td data-label="Nombre">{{ c.nombre }}</td>
+        <td data-label="Profesor">{{ c.email }}</td>
+        <td data-label="Dificultad"><b>{{ c.puntos }}</b></td>
+    </tr>
+  </tbody>
+</table>

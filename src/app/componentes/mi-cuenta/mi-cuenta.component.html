@@ -30,12 +30,17 @@
     </div>
 
     <div class="info">
+      <p class="label">Puntos:</p>
+      <input type="text" class="value" [value]="usu.puntos" readonly />
+    </div>
+
+    <div class="info">
       <p class="label">Vidas:</p>
       <input type="text" class="value" [value]="usu.vidas" readonly />
     </div>
+
+
     <div *ngIf="email != usu.email || contrasena != usu.contrasena">
       <button (click)=Aceptar()>Aceptar Cambios</button>
     </div>
-    
-  </div>
 </div>

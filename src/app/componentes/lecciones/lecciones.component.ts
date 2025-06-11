@@ -33,9 +33,7 @@ export class LeccionesComponent {
     });
 
     this.idUsu = this.login.retornarId();
-  }
-  ngOnInit() {
-    console.log('Parametro recibido:'+this.id)
+     console.log('Parametro recibido:'+this.id)
     this.data.getAllLecciones(this.id).subscribe((a) => {
       a.forEach((e) => {
         this.lecciones.push(e);
@@ -44,19 +42,29 @@ export class LeccionesComponent {
       this.getUsuPro(this.lecciones[0].curso_id)
       this.idNivel=this.lecciones[0].curso_id
     });
-    
   }
+
   getUsuPro(idCurso: number){
     this.data.getUsuarioProgreso(this.idUsu, idCurso).subscribe((a) => {
       this.usu = a;
       console.log('usuario: ', this.usu);
-      if(this.usu?.leccion_id>=5)
+      if(this.usu?.leccion_id>=this.lecciones.length + 1)
           this.subirNivel(this.usu.usuario_id, this.usu.curso_id)
     });
     
 }
 subirNivel(idUsu:number, idCurso:number){
-        
+      this.login.sumarPuntosNivel(this.idUsu)
+      .subscribe({
+        next: (respuesta) => {
+          console.log('Edicion exitosa:', respuesta);
+        },
+        error: (error) => {
+          console.error('Error al editar:', error);
+        }
+      });   
+
+
         this.data.UpdateNivelUsuarioCurso(idUsu, idCurso).subscribe({
         next: (res: any) => {
           console.log("Mensaje:", res.mensaje);
@@ -65,7 +73,7 @@ subirNivel(idUsu:number, idCurso:number){
         console.error("Error al updatear:", err);
       }
     });
-    alert('Has completado todas las lecciones del nivel!');
+    alert('Has completado todas las lecciones del nivel! se han sumado... 100 puntos!');
     }
   seleccionarLeccion(leccion: any) {
     console.log('Lección seleccionada:', leccion);
@@ -78,7 +86,7 @@ subirNivel(idUsu:number, idCurso:number){
     this.route.navigate([
       '/home/info-lecciones',
       leccion.id, // Cambiado de leccion.leccion_id a leccion.id
-      leccion.nivelId, // Cambiado de leccion.nivel_id a leccion.nivelId
+      leccion.curso_id, // Cambiado de leccion.nivel_id a leccion.nivelId
       nombreLimpio,
     ]);
   }

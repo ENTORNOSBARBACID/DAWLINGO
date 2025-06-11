@@ -86,7 +86,7 @@ export class ServicioService {
       usuario_id: idUsu,
       curso_id: idCurso,
     };
-    console.log('le envio al back: ' + body);
+    console.log('Le envio al back: ', body);
 
     return this.http.post(
       environment.apiUrl + '/UsuarioProgreso/updateNivelUsuarioProgreso',
@@ -99,7 +99,7 @@ export class ServicioService {
       usuario_id: idUsu,
       curso_id: idCurso,
     };
-    console.log(body);
+    console.log("ENVIO SETOS DATOS PARA HACER EL GET DE USUARIO PROGRESO ",body);
     return this.http.post<IProgreso>(
       environment.apiUrl + '/UsuarioProgreso/getUsuarioProgreso',
       body

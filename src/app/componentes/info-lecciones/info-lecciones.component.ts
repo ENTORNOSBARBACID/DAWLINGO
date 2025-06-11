@@ -33,7 +33,7 @@ export class InfoLeccionesComponent implements OnInit {
       this.route.paramMap.subscribe(async (params) => {
         this.leccionIdParam = params.get('id') || '';
         const nombreParam = params.get('nombre') || '';
-        this.nivelIdParam = params.get('nivel_id') || '';
+        this.nivelIdParam = params.get('curso_id') || '';
         const id = Number(this.leccionIdParam);
 
         this.leccionSeleccionada = this.fundamentos.find(

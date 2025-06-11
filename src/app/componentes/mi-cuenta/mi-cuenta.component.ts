@@ -16,7 +16,7 @@ nombre: string="";
 contrasena:string="";
 email:string="";
 rol:number=1;
-correcto:boolean=true;
+correcto:boolean=false;
 constructor(private login: LoginService, private router: Router){
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state;

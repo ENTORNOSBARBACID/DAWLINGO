@@ -23,14 +23,11 @@ export class LoginComponent {
     this.login.login(this.usuario, this.password).subscribe({
       next: (data: any) => {
         console.log('DATOS', data);
-        if (data.type === 'Admin') {
+        console.log("Rol: ", data.type);
           sessionStorage.setItem('usuario', data.nombre);
           this.guardarId(data.id);
           this.guardarRol(data.type);
-          this.loginError = false; // Resetea en caso de éxito
-        } else {
-          this.loginError = true;
-        }
+        
       },
       error: (err) => {
         console.error('Login error', err);
