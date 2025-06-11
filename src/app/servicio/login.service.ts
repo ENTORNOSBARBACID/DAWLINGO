@@ -8,6 +8,7 @@ import { shareReplay } from 'rxjs';
 })
 export class LoginService {
   private id:number=0;
+  private rol:string="";
   constructor(private http: HttpClient) {}
 
   login(usuario: string, password: string) {
@@ -66,6 +67,8 @@ export class LoginService {
   }
   console.log('id ' + this.id);
   }
+
+
   retornarId(){
   if (typeof window !== 'undefined') {
     const id = localStorage.getItem('idUsuario');
@@ -74,4 +77,19 @@ export class LoginService {
   return this.id;
   }
 
+  guardarRol(rol:string){
+  this.rol = rol;
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('RolUsuario', rol);
+  }
+  console.log('Rol ' + this.rol);
+  }
+
+  retornarRol(){
+  if (typeof window !== 'undefined') {
+    const rol = localStorage.getItem('RolUsuario');
+    this.rol = rol ? rol : "";
+  }
+  return this.rol;
+  }
 }

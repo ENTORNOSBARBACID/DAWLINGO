@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { InfoLeccionesComponent } from './info-lecciones/info-lecciones.component';
 import { MisCursosComponent } from './mis-cursos/mis-cursos.component';
 import { RegistrateComponent } from './registrate/registrate.component';
+import { InfoAdminComponent } from './info-admin/info-admin.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RegistrateComponent } from './registrate/registrate.component';
     PreguntasComponent,
     InfoLeccionesComponent,
     MisCursosComponent,
-    RegistrateComponent
+    RegistrateComponent,
+    InfoAdminComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,8 @@ import { RegistrateComponent } from './registrate/registrate.component';
     PreguntasComponent,
     InfoLeccionesComponent,
     MisCursosComponent,
-    RegistrateComponent
+    RegistrateComponent,
+    InfoAdminComponent
   ],
 })
 export class ComponentModule {}

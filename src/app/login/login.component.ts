@@ -26,6 +26,7 @@ export class LoginComponent {
         if (data.type === 'Admin') {
           sessionStorage.setItem('usuario', data.nombre);
           this.guardarId(data.id);
+          this.guardarRol(data.type);
           this.loginError = false; // Resetea en caso de éxito
         } else {
           this.loginError = true;
@@ -40,6 +41,11 @@ export class LoginComponent {
 
   guardarId(data: number) {
     this.login.guardarId(data);
+  }
+
+  guardarRol(data: string) {
+    console.log(data)
+    this.login.guardarRol(data);
     this.router.navigate(['/home']);
   }
 }
