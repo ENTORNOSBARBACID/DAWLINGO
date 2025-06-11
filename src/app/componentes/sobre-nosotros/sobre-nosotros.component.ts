@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-sobre-nosotros',
-  imports: [],
+  standalone: false,
   templateUrl: './sobre-nosotros.component.html',
-  styleUrl: './sobre-nosotros.component.css'
+  styleUrl: './sobre-nosotros.component.css',
 })
-export class SobreNosotrosComponent {
-
-}
+export class SobreNosotrosComponent {}

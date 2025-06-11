@@ -15,6 +15,7 @@ import { InfoLeccionesComponent } from './info-lecciones/info-lecciones.componen
 import { MisCursosComponent } from './mis-cursos/mis-cursos.component';
 import { RegistrateComponent } from './registrate/registrate.component';
 import { InfoAdminComponent } from './info-admin/info-admin.component';
+import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { InfoAdminComponent } from './info-admin/info-admin.component';
     InfoLeccionesComponent,
     MisCursosComponent,
     RegistrateComponent,
-    InfoAdminComponent
+    InfoAdminComponent,
+    SobreNosotrosComponent,
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { InfoAdminComponent } from './info-admin/info-admin.component';
     InfoLeccionesComponent,
     MisCursosComponent,
     RegistrateComponent,
-    InfoAdminComponent
+    InfoAdminComponent,
+    SobreNosotrosComponent,
   ],
 })
 export class ComponentModule {}
