@@ -12,6 +12,8 @@ import { marked } from 'marked';
 })
 export class InfoLeccionesComponent implements OnInit {
   fundamentos: IFundamentos[] = [];
+  estructuras: IFundamentos[] = [];
+
   leccionSeleccionada?: IFundamentos;
 
   leccionIdParam: string = '';
