@@ -1,46 +1,39 @@
 .main {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
   min-height: 100vh;
-  background: white; /* Fondo blanco */
-  padding: 40px;
+  background: #f7fafc;
+  padding: 40px 20px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.logo-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+}
+
 .container {
-  width: 800px;
+  width: 100%;
+  max-width: 700px;
   background: white;
   border-radius: 16px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08); /* Sombra más suave */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   padding: 40px;
   position: relative;
-  overflow: hidden;
-  border: 1px solid #e2e8f0; /* Borde sutil */
-}
-
-.container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 6px; /* Más delgado */
-  height: 100%;
-  background: #028bad; /* Solo azul */
-}
-
-.icono {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto 30px;
+  border-left: 6px solid #028bad;
 }
 
 h2 {
   text-align: center;
   color: #2d3748;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   font-size: 28px;
   font-weight: 600;
   position: relative;
@@ -54,16 +47,16 @@ h2::after {
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background: #028bad; /* Azul sólido */
+  background: #028bad;
   border-radius: 3px;
 }
 
 .info {
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 150px 1fr;
   align-items: center;
   margin-bottom: 20px;
-  padding: 15px 0;
+  padding-bottom: 10px;
   border-bottom: 1px solid #edf2f7;
 }
 
@@ -75,46 +68,54 @@ h2::after {
 }
 
 .value {
-  border: 1px solid #e2e8f0; 
-  background: white;
-  padding: 12px 20px;
+  border: 1px solid #e2e8f0;
+  background: #fdfdfd;
+  padding: 12px 18px;
   border-radius: 8px;
   font-size: 16px;
-  color: #2d3748;
-  width: 70%;
+  width: 80%; /* CAMBIO HECHO AQUÍ */
   transition: all 0.3s ease;
 }
 
 .value:focus {
   outline: none;
   border-color: #028bad;
-  box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.2);
+  box-shadow: 0 0 0 2px rgba(2, 139, 173, 0.3);
 }
+
 button {
-  background: linear-gradient(135deg, #1592ff 0%, #016f75 100%);
+  background: linear-gradient(135deg, #028bad, #015a77);
   color: white;
   border: none;
-  padding: 12px 24px;
+  padding: 14px 28px;
   font-size: 1rem;
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s;
-  margin-top: 20px;
+  margin-top: 30px;
+  display: block;
+  width: 100%;
 }
 
 button:hover {
-  background: linear-gradient(135deg, #016f75 0%, #1592ff 100%);
+  background: linear-gradient(135deg, #015a77, #028bad);
   transform: translateY(-2px);
 }
 
-@media (max-width: 768px) {
-  .container {
-    width: 100%;
-    padding: 30px 20px;
-  }
+.error-msg {
+  color: red;
+  margin-top: 10px;
+  font-size: 0.95rem;
+  text-align: center;
+}
 
+@media (max-width: 768px) {
   .info {
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 10px;
+  }
+
+  .label {
+    text-align: left;
   }
 }
