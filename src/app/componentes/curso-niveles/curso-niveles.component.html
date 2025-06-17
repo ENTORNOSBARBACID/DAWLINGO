@@ -12,8 +12,8 @@
     <div *ngFor="let nivel of niveles" class="nivel-item">
       <button
         class="nivel-btn"
-        [class.disabled]="(usu.nivel_id ?? 0) < (nivel.numeroNivel ?? 0)"
-        [disabled]="(usu.nivel_id ?? 0) < (nivel.numeroNivel ?? 0)"
+        [class.disabled]="usu.nivel_id < nivel.numeroNivel"
+        [disabled]="usu.nivel_id < nivel.numeroNivel"
         (click)="seleccionarNivel(nivel)"
       >
         <div class="nivel-texto">
@@ -22,7 +22,7 @@
         </div>
         <span class="icon">
           <ng-container
-            *ngIf="(usu.nivel_id ?? 0) >= (nivel.numeroNivel ?? 0); else bloqueadoIcono"
+            *ngIf="usu.nivel_id >= nivel.numeroNivel; else bloqueadoIcono"
           >
           </ng-container>
           <ng-template #bloqueadoIcono> </ng-template>
