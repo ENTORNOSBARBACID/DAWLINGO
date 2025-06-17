@@ -1,4 +1,4 @@
-<h2>Nuestros cursos...</h2>
+<h2>Mis cursos...</h2>
         <div *ngIf="cursos.length>0; else apuntate" class="content">
             <div *ngFor="let item of cursos" class="course-card">
                 <img src="{{item.imagen}}" alt="Curso" class="course-image" />
@@ -13,4 +13,4 @@
         <ng-template #apuntate>
             <h1>No estas apuntado a ningun curso...</h1>
         </ng-template>
-<h3>Más cursos proximamente!</h3>
+<h3>Apuntate a mas cursos proximamente!</h3>
