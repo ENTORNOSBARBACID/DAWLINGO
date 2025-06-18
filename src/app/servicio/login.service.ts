@@ -17,6 +17,7 @@ export class LoginService {
       Nombre: usuario,
       Password: password,
     };
+    console.log(environment.apiUrl)
     return this.http
       .post(environment.apiUrl + '/Login/Login', body)
       .pipe(shareReplay());
