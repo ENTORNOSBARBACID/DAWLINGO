@@ -19,7 +19,7 @@ export class LoginService {
     };
     console.log(environment.apiUrl)
     return this.http
-      .post('https://dawlingo-2fcl.vercel.app/Login/Login', body)
+      .post(environment.apiUrl + '/Login/Login', body)
       .pipe(shareReplay());
   }
 
