@@ -19,7 +19,7 @@ export class LoginService {
     };
     console.log(environment.apiUrl)
     return this.http
-      .post(environment.apiUrl + '/Login/Login', body)
+      .post(environment.apiUrl + '/api/Login/Login', body)
       .pipe(shareReplay());
   }
 
